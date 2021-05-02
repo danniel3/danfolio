@@ -26,3 +26,39 @@ body {
 	line-height: 130%;
 	padding-bottom: 1.5rem;
 }
+
+/* Navbar */
+
+#div-head {
+
+}
+> nav a.menu-active {
+    color: coral;
+    border-bottom: 2px solid coral;
+}
+
+> nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1em;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0
+}
+
+nav a {
+    padding: 1em 1em;
+    display: inline-block;
+    color: gray;
+    font-family: sans-serif;
+    text-decoration: none
+}
+
+nav a:hover {
+    color: lightcoral;
+}

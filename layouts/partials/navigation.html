@@ -7,11 +7,11 @@
             <li>
                 <a class='{{if or ($currentPage.IsMenuCurrent "navigation" .) ($currentPage.HasMenuCurrent "navigation" .) }}menu-active{{ end }}'
                     href="{{ absURL .URL }}">
-                    {{ if .Page.IsSection }}
-                    {{ .Title | pluralize }}
-                    {{ else }}
                     {{ .Title }}
-                    {{ end }}
+                    <!-- {{ if .Page.IsSection }} -->
+                    <!-- {{ .Title | pluralize }} -->
+                    <!-- {{ else }} -->
+                    <!-- {{ end }} -->
                 </a>
             </li>
             {{ end }}

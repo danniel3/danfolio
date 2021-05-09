@@ -4,12 +4,12 @@
     	{{- partial "head.html" . -}}
     </head>
     <body>
+        {{- partial "navigation.html" . -}}
 	<div id="div-body">
 		<div id="div-left">
                 {{- partial "toc.html" . -}}
 		</div>
 		<div id="div-center">
-        		{{- partial "center-header.html" . -}}
 		        {{- block "main" . }}{{- end }}
 		        {{- partial "center-footer.html" . -}}
 		</div>

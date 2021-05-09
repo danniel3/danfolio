@@ -2,6 +2,7 @@
   box-sizing: border-box;
 }
 
+
 body {
 	background-color: #f7f3ef;
 	font-size: 1.5rem;
@@ -37,22 +38,30 @@ body {
 }
 
 > #navbar {
+    /* display: flex; */
+    /* justify-content: space-between; */
+    /* padding: 0 1em; */
+    /* max-width: 1280px; */
+    /* margin: 0 auto; */
+
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    padding: 0 1em;
-    max-width: 1280px;
-    margin: 0 auto;
+    max-width: calc(var(--nav-width) + var(--gap) * 2);
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    line-height: var(--header-height)
 }
 
 #navbar ul {
     display: flex;
     list-style-type: none;
-    margin: 0
+    margin: auto var(--gap)
 }
 
 #navbar a {
-    padding: 1em 1em;
-    display: inline-block;
+    /* padding: 1em 1em; */
+    display: block;
     color: gray;
     font-family: sans-serif;
     text-decoration: none

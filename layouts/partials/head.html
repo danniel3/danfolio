@@ -1,4 +1,11 @@
 <!-- Styles and Fonts -->
-<!-- <link rel="stylesheet" type="text/css" href="{{ "static/css/default.css" | relURL }}" /> -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="{{ absURL "css/default.css" }}">
+{{/* Scan all themes assets css folders for css and add them here */}}
+{{ $cssResources := slice }}
+{{ $dir := readDir "themes/simplimi/assets/css" }}
+{{ range $dir }}
+  {{ $path := print "css/" .Name }}
+  {{ $resource := resources.Get $path }}
+  {{ $cssResources = $cssResources | append $resource }}
+{{ end }}
+{{ $cssBundle := $cssResources | resources.Concat "css/bundle.css" | fingerprint | minify }}
+<link rel="stylesheet" href="{{ $cssBundle.RelPermalink }}">

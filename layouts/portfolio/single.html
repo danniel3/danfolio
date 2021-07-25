@@ -1,0 +1,39 @@
+{{- define "main" }}
+<div id="div-body">
+	<h1>{{ .Title }}</h1>
+
+	<!-- Launch date -->
+	<h6>{{ dateFormat "January 2006" .Params.campaigndate.launch }}</h6>
+
+	<!-- Media Mentions -->
+	<ul>
+		{{ range .Params.featured }}
+		<li>
+			<a href="{{.link}}">{{.name}}</a> | {{.quote}}
+		</li>
+		{{ end }}
+	</ul>
+
+	<!-- Conversions -->
+	<p>Visitors: {{ lang.NumFmt 0 .Params.conversions.visitors }}</p>
+	<p>Conversions: {{ lang.NumFmt 0 .Params.conversions.conversions }}</p>
+	<p>Conversion Rate {{ lang.NumFmt 2 ( mul ( div .Params.conversions.conversions .Params.conversions.visitors ) 100 ) }}%</p>
+
+	<!-- Highlights -->
+	<h3>Challenges</h3>
+	<p>{{.Params.highlights.challenge}}</p>
+
+	<h3>Wins</h3>
+	<p>{{.Params.highlights.wins}}</p>
+
+	<!-- Image -->
+	{{ with .Resources.ByType "image" }}
+		<div class="Image">
+			{{ range . }}
+			<img src="{{ .RelPermalink }}">
+			{{ end }}
+		</div>
+	{{ end }}
+	<!-- {{ .Content }} -->
+</div>
+{{ end }}

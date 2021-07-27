@@ -5,7 +5,34 @@
 	<!-- Launch date -->
 	<h6>{{ dateFormat "January 2006" .Params.campaigndate.launch }}</h6>
 
+	<!-- Highlights -->
+	<h2>Brief</h2>
+	<p>{{.Params.highlights.brief}}</p>
+
+	<h2>Wins</h2>
+	<p>{{.Params.highlights.solution}}</p>
+
+	<!-- Testimonial -->
+	<h2>Testimonials</h2>
+	{{ range .Params.testimonial }}
+	<p>{{.quote}}</p>
+	<p><a href="{{.link}}">{{.name}}</a>, {{.position}} at {{.company}}</p>
+	{{ end }}
+
+	<h2>Results</h2>
+	<p>{{.Params.highlights.results}}</p>
+
+	<!-- Conversions -->
+	<h3>Stats</h3>
+	<li>Visitors: {{ lang.NumFmt 0 .Params.conversions.visitors }}</li>
+	<li>Conversions: {{ lang.NumFmt 0 .Params.conversions.conversions }}</li>
+	<li>Conversion Rate {{ lang.NumFmt 2 ( mul ( div .Params.conversions.conversions .Params.conversions.visitors ) 100 ) }}%</li>
+
+	<h2>Services</h2>
+	<p>{{.Params.highlights.services}}</p>
+
 	<!-- Media Mentions -->
+	<h2>Featured in</h2>
 	<ul>
 		{{ range .Params.featured }}
 		<li>
@@ -14,17 +41,14 @@
 		{{ end }}
 	</ul>
 
-	<!-- Conversions -->
-	<p>Visitors: {{ lang.NumFmt 0 .Params.conversions.visitors }}</p>
-	<p>Conversions: {{ lang.NumFmt 0 .Params.conversions.conversions }}</p>
-	<p>Conversion Rate {{ lang.NumFmt 2 ( mul ( div .Params.conversions.conversions .Params.conversions.visitors ) 100 ) }}%</p>
-
-	<!-- Highlights -->
-	<h3>Challenges</h3>
-	<p>{{.Params.highlights.challenge}}</p>
-
-	<h3>Wins</h3>
-	<p>{{.Params.highlights.wins}}</p>
+	<!-- Team -->
+	<h2>Team</h2>
+	<ul>
+	<li>Agency: <a href="{{ .Params.team.link }}">{{ .Params.team.agency }}</a></li>
+		{{ range .Params.team.people }}
+		<li>{{.position}}: <a href="{{.link}}">{{.name}}</a></li>
+		{{ end }}
+	</ul>
 
 	<!-- Image -->
 	{{ with .Resources.ByType "image" }}

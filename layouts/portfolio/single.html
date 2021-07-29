@@ -24,9 +24,12 @@
 
 	<!-- Conversions -->
 	<h3>Stats</h3>
-	<li>Visitors: {{ lang.NumFmt 0 .Params.conversions.visitors }}</li>
-	<li>Conversions: {{ lang.NumFmt 0 .Params.conversions.conversions }}</li>
-	<li>Conversion Rate {{ lang.NumFmt 2 ( mul ( div .Params.conversions.conversions .Params.conversions.visitors ) 100 ) }}%</li>
+	<ul>
+		<li>Raised: {{ lang.NumFmt 0 .Params.conversions.raised }}</li>
+		<li>Visitors: {{ lang.NumFmt 0 .Params.conversions.visitors }}</li>
+		<li>Conversions: {{ lang.NumFmt 0 .Params.conversions.conversions }}</li>
+		<li>Conversion Rate {{ lang.NumFmt 2 ( mul ( div .Params.conversions.conversions .Params.conversions.visitors ) 100 ) }}%</li>
+	</ul>
 
 	<h2>Services</h2>
 	<p>{{.Params.highlights.services}}</p>
@@ -49,6 +52,10 @@
 		<li>{{.position}}: <a href="{{.link}}">{{.name}}</a></li>
 		{{ end }}
 	</ul>
+
+	<!-- Client -->
+	<h2>Partner: <a href="{{ .Params.client.link  }}">{{ .Params.client.name }}</a></h2>
+	<p>{{ .Params.client.about }}</p>
 
 	<!-- Image -->
 	{{ with .Resources.ByType "image" }}

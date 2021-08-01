@@ -6,62 +6,99 @@
 	<h6>{{ dateFormat "January 2006" .Params.campaigndate.launch }}</h6>
 
 	<!-- Highlights -->
-	<h2>Brief</h2>
-	<p>{{.Params.highlights.brief}}</p>
-
-	<h2>Wins</h2>
-	<p>{{.Params.highlights.solution}}</p>
-
-	<!-- Testimonial -->
-	<h2>Testimonials</h2>
-	{{ range .Params.testimonial }}
-	<p>{{.quote}}</p>
-	<p><a href="{{.link}}">{{.name}}</a>, {{.position}} at {{.company}}</p>
+	{{ with .Params.highlights.brief }}
+		<h2>Brief</h2>
+		<p>{{ . }}</p>
 	{{ end }}
 
-	<h2>Results</h2>
-	<p>{{.Params.highlights.results}}</p>
+	<!-- Solutions -->
+	{{ with .Params.highlights.solution }}
+		<h2>Solutions</h2>
+		<p>{{ . }}</p>
+	{{ end }}
+
+	<!-- Testimonial -->
+	{{ with ( index .Params.testimonial 0 "name" ) }}
+		<h2>Testimonials</h2>
+		{{ range $.Params.testimonial }}
+			<p>{{.quote}}</p>
+			<p><a href="https://{{.link}}">{{.name}}</a>, {{.position}} at {{.company}}</p>
+		{{ end }}
+	{{ end }}
+
+	<!-- Results -->
+	{{ with .Params.highlights.results }}
+		<h2>Results</h2>
+		<p>{{ . }}</p>
+	{{ end }}
 
 	<!-- Conversions -->
-	<h3>Stats</h3>
-	<ul>
-		<li>Raised: {{ lang.NumFmt 0 .Params.conversions.raised }}</li>
-		<li>Visitors: {{ lang.NumFmt 0 .Params.conversions.visitors }}</li>
-		<li>Conversions: {{ lang.NumFmt 0 .Params.conversions.conversions }}</li>
-		<li>Conversion Rate {{ lang.NumFmt 2 ( mul ( div .Params.conversions.conversions .Params.conversions.visitors ) 100 ) }}%</li>
-	</ul>
+	{{ if gt ( or .Params.conversions.raised .Params.conversions.visitors .Params.conversions.conversions ) 1  }}
+		<h3>Stats</h3>
+		<ul>
+			{{ with .Params.conversions.raised }}
+				<li>Raised: ${{ lang.NumFmt 0 . }}</li>
+			{{ end }}
+			{{ with .Params.conversions.visitors }}
+				<li>Visitors: {{ lang.NumFmt 0 . }}</li>
+			{{ end }}
+			{{ with .Params.conversions.conversions }}
+				<li>Conversions: {{ lang.NumFmt 0 . }}</li>
+			{{ end }}
+			{{ with and .Params.conversions.conversions .Params.conversions.visitors ( dict "visitors" .Params.conversions.visitors "conversions" .Params.conversions.conversions ) }}
+				<li>Conversion Rate {{ lang.NumFmt 2 ( mul ( div .conversions .visitors ) 100 ) }}%</li>
+			{{ end }}
+		</ul>
+		{{ else }}
+	{{ end }}
 
-	<h2>Services</h2>
-	<p>{{.Params.highlights.services}}</p>
+	<!-- Services -->
+	<!-- Need to make this into a global taxonomy that can be filtered, and linked to individual pages -->
+	{{ with .Params.highlights.services }}
+		<h2>Services</h2>
+		<p>{{ . }}</p>
+	{{ end }}
 
 	<!-- Media Mentions -->
-	<h2>Featured in</h2>
-	<ul>
-		{{ range .Params.featured }}
-		<li>
-			<a href="{{.link}}">{{.name}}</a> | {{.quote}}
-		</li>
-		{{ end }}
-	</ul>
+	{{ with ( index .Params.featured 0 "name" ) }}
+		<h2>Featured in</h2>
+		<ul>
+			{{ range $.Params.featured }}
+				<li>
+					<a href="{{.link}}">{{.name}}</a>{{ with .quote }} | {{ . }}{{ end }}
+				</li>
+			{{ end }}
+		</ul>
+	{{ end }}
 
 	<!-- Team -->
-	<h2>Team</h2>
-	<ul>
-	<li>Agency: <a href="{{ .Params.team.link }}">{{ .Params.team.agency }}</a></li>
-		{{ range .Params.team.people }}
-		<li>{{.position}}: <a href="{{.link}}">{{.name}}</a></li>
-		{{ end }}
-	</ul>
+	{{ with or .Params.team.agency .Params.team.people }}
+		<h2>Team</h2>
+		<ul>
+			{{ with $.Params.team.agency }}
+				<li>Agency: <a href="{{ $.Params.team.link }}">{{ . }}</a></li>
+			{{ end }}
+			{{ with ( index $.Params.team.people 0 "name" ) }}
+				{{ range $.Params.team.people }}
+					<li>{{.position}}: <a href="{{.link}}">{{.name}}</a></li>
+				{{ end }}
+			{{ end }}
+		</ul>
+	{{ end }}
 
 	<!-- Client -->
-	<h2>Partner: <a href="{{ .Params.client.link  }}">{{ .Params.client.name }}</a></h2>
-	<p>{{ .Params.client.about }}</p>
+	{{ with .Params.client.name }}
+		<h2>Partner: <a href="{{ $.Params.client.link }}">{{ . }}</a></h2>
+		{{ with $.Params.client.about }}
+			<p>{{ . }}</p>
+		{{ end }}
+	{{ end }}
 
 	<!-- Image -->
 	{{ with .Resources.ByType "image" }}
 		<div class="Image">
 			{{ range . }}
-			<img src="{{ .RelPermalink }}">
+				<img src="{{ .RelPermalink }}">
 			{{ end }}
 		</div>
 	{{ end }}

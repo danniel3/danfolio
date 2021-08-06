@@ -5,6 +5,16 @@
 	<!-- Launch date -->
 	<h6>{{ dateFormat "January 2006" .Params.campaigndate.launch }}</h6>
 
+	<!-- Industry and Platform -->
+	{{ if .Params.client.industries }}
+		<strong>Industr{{ if gt (len .Params.client.industries) 1 }}ies{{ else }}y{{ end }}:</strong>
+  			{{ range $index, $industry := .Params.client.industries }}{{ if gt $index 0 }}, {{ end }}<a href="{{ "/industries/" | relURL }}{{ . | urlize }}">{{ . }}</a>{{ end }}
+	{{ end }}
+	{{ if .Params.client.media }}
+		<strong>Medi{{ if gt (len .Params.client.media) 1 }}a{{ else }}um{{ end }}:</strong>
+  			{{ range $index, $media := .Params.client.media }}{{ if gt $index 0 }}, {{ end }}<a href="{{ "/medium/" | relURL }}{{ . | urlize }}">{{ . }}</a>{{ end }}
+	{{ end }}
+
 	<!-- Highlights -->
 	{{ with .Params.highlights.brief }}
 		<h2>Brief</h2>
@@ -22,7 +32,7 @@
 		<h2>Testimonials</h2>
 		{{ range $.Params.testimonial }}
 			<p>{{.quote}}</p>
-			<p><a href="https://{{.link}}">{{.name}}</a>, {{.position}} at {{.company}}</p>
+			<p><a href="https://{{ .link }}">{{ .name }}</a>, {{ .position }} at {{ .company }}</p>
 		{{ end }}
 	{{ end }}
 
@@ -53,19 +63,22 @@
 	{{ end }}
 
 	<!-- Services -->
-	<!-- Need to make this into a global taxonomy that can be filtered, and linked to individual pages -->
 	{{ with .Params.highlights.services }}
 		<h2>Services</h2>
-		<p>{{ . }}</p>
+		<ul id="tags">
+			{{ range $.Params.highlights.services }}
+			<li><a href="{{ "/services/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> </li>
+			{{ end }}
+		</ul>
 	{{ end }}
 
 	<!-- Media Mentions -->
-	{{ with ( index .Params.featured 0 "name" ) }}
+	{{ with ( index .Params.featured 0 "media" ) }}
 		<h2>Featured in</h2>
 		<ul>
 			{{ range $.Params.featured }}
 				<li>
-					<a href="{{.link}}">{{.name}}</a>{{ with .quote }} | {{ . }}{{ end }}
+					<a href="{{ .link }}">{{ .media }}</a>{{ with .quote }} | {{ . }}{{ end }} | <a href="{{ "/media/" | relLangURL }}{{ .media | urlize }}">See more coverage by {{ .media }}</a>
 				</li>
 			{{ end }}
 		</ul>

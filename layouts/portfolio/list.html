@@ -1,0 +1,135 @@
+{{- define "main" }}
+<section id=content>
+  <ul class=posts_listing>
+    {{ range .Site.RegularPages }}
+      <li>
+        <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+        <div class=date>
+          {{if not .Date.IsZero }}
+            {{ .Date.Format (.Site.Params.dateform | default "January 2006") }}
+          {{end}}
+        </div>
+      </li>
+    {{ end }}
+  </ul>
+</section>
+
+<div id="div-body">
+	<h1>{{ .Title }}</h1>
+
+	<!-- Launch date -->
+	<h6>{{ dateFormat "January 2006" .Params.campaigndate.launch }}</h6>
+
+	<!-- Industry and Platform -->
+	{{ if .Params.client.industries }}
+		<strong>Industr{{ if gt (len .Params.client.industries) 1 }}ies{{ else }}y{{ end }}:</strong>
+  			{{ range $index, $industry := .Params.client.industries }}{{ if gt $index 0 }}, {{ end }}<a href="{{ "/industries/" | relURL }}{{ . | urlize }}">{{ . }}</a>{{ end }}
+	{{ end }}
+	{{ if .Params.client.media }}
+		<strong>Medi{{ if gt (len .Params.client.media) 1 }}a{{ else }}um{{ end }}:</strong>
+  			{{ range $index, $media := .Params.client.media }}{{ if gt $index 0 }}, {{ end }}<a href="{{ "/medium/" | relURL }}{{ . | urlize }}">{{ . }}</a>{{ end }}
+	{{ end }}
+
+	<!-- Highlights -->
+	{{ with .Params.highlights.brief }}
+		<h2>Brief</h2>
+		<p>{{ . }}</p>
+	{{ end }}
+
+	<!-- Solutions -->
+	{{ with .Params.highlights.solution }}
+		<h2>Solutions</h2>
+		<p>{{ . }}</p>
+	{{ end }}
+
+	<!-- Testimonial -->
+	{{ with ( index .Params.testimonial 0 "name" ) }}
+		<h2>Testimonials</h2>
+		{{ range $.Params.testimonial }}
+			<p>{{.quote}}</p>
+			<p><a href="https://{{ .link }}">{{ .name }}</a>, {{ .position }} at {{ .company }}</p>
+		{{ end }}
+	{{ end }}
+
+	<!-- Results -->
+	{{ with .Params.highlights.results }}
+		<h2>Results</h2>
+		<p>{{ . }}</p>
+	{{ end }}
+
+	<!-- Conversions -->
+	{{ if gt ( or .Params.conversions.raised .Params.conversions.visitors .Params.conversions.conversions ) 1  }}
+		<h3>Stats</h3>
+		<ul>
+			{{ with .Params.conversions.raised }}
+				<li>Raised: ${{ lang.NumFmt 0 . }}</li>
+			{{ end }}
+			{{ with .Params.conversions.visitors }}
+				<li>Visitors: {{ lang.NumFmt 0 . }}</li>
+			{{ end }}
+			{{ with .Params.conversions.conversions }}
+				<li>Conversions: {{ lang.NumFmt 0 . }}</li>
+			{{ end }}
+			{{ with and .Params.conversions.conversions .Params.conversions.visitors ( dict "visitors" .Params.conversions.visitors "conversions" .Params.conversions.conversions ) }}
+				<li>Conversion Rate {{ lang.NumFmt 2 ( mul ( div .conversions .visitors ) 100 ) }}%</li>
+			{{ end }}
+		</ul>
+		{{ else }}
+	{{ end }}
+
+	<!-- Services -->
+	{{ with .Params.highlights.services }}
+		<h2>Services</h2>
+		<ul id="tags">
+			{{ range $.Params.highlights.services }}
+			<li><a href="{{ "/services/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> </li>
+			{{ end }}
+		</ul>
+	{{ end }}
+
+	<!-- Media Mentions -->
+	{{ with ( index .Params.featured 0 "media" ) }}
+		<h2>Featured in</h2>
+		<ul>
+			{{ range $.Params.featured }}
+				<li>
+					<a href="{{ .link }}">{{ .media }}</a>{{ with .quote }} | {{ . }}{{ end }} | <a href="{{ "/media/" | relLangURL }}{{ .media | urlize }}">See more coverage by {{ .media }}</a>
+				</li>
+			{{ end }}
+		</ul>
+	{{ end }}
+
+	<!-- Team -->
+	{{ with or .Params.team.agency .Params.team.people }}
+		<h2>Team</h2>
+		<ul>
+			{{ with $.Params.team.agency }}
+				<li>Agency: <a href="{{ $.Params.team.link }}">{{ . }}</a></li>
+			{{ end }}
+			{{ with ( index $.Params.team.people 0 "name" ) }}
+				{{ range $.Params.team.people }}
+					<li>{{.position}}: <a href="{{.link}}">{{.name}}</a></li>
+				{{ end }}
+			{{ end }}
+		</ul>
+	{{ end }}
+
+	<!-- Client -->
+	{{ with .Params.client.name }}
+		<h2>Partner: <a href="{{ $.Params.client.link }}">{{ . }}</a></h2>
+		{{ with $.Params.client.about }}
+			<p>{{ . }}</p>
+		{{ end }}
+	{{ end }}
+
+	<!-- Image -->
+	{{ with .Resources.ByType "image" }}
+		<div class="Image">
+			{{ range . }}
+				<img src="{{ .RelPermalink }}">
+			{{ end }}
+		</div>
+	{{ end }}
+	<!-- {{ .Content }} -->
+</div>
+{{ end }}

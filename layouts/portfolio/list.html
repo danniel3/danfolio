@@ -1,27 +1,30 @@
 {{- define "main" }}
-<section id=content>
+<p> yes </p>
+<section id="content">
+  <div class="intro">
+    {{ .Content }}
+  </div>
   <div class="grid">
-    {{ range where .Site.RegularPages "Section" "portfolio" }}
+    {{- range where .Site.RegularPages "Section" "portfolio" }}
       <div class="grid-item">
-
-        {{- $img := ( printf "%s.png" ( lower .Title ) ) -}}
-        {{- $images := .Page.Resources.ByType "image" -}}
-        {{- $original := .Resources.GetMatch $img -}}
-
-	      {{ with .Resources.GetMatch $img }}
-		      <div class="Image">
-            {{ $image200x := (.Fill "200x200") }}
-				      <img src="{{ $image200x.Permalink | absURL }}">
-		      </div>
-	      {{ end }}
-
-        <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-        {{ with .Params.campaigndate.launch }}<p class="date">Launch: {{ dateFormat "Jan 2006" . }}</p>{{end}}
-        {{ with .Params.conversions.raised }}<p class="raise">Raised: ${{ lang.NumFmt 0 . }}</p>{{ end }}
-        {{ with .Params.client.industries }}<p class="industry">Industr{{ if gt ( len . ) 1 }}ies{{ else }}y{{ end }}: {{ range $index, $industry := . }}{{ if gt $index 0 }}, {{ end }}<a href="{{ "/industries/" | relURL }}{{ . | urlize }}">{{ . }}</a>{{ end }}</p>{{ end }}
-        {{ with .Params.highlights.services }}<p class="service">Service{{ if gt ( len . ) 1 }}s{{ end }}: {{ range $index, $service := . }}{{ if gt $index 0 }}, {{ end }}<a href="{{ "/service/" | relURL }}{{ . | urlize }}">{{ . }}</a>{{ end }}</p>{{ end }}
+        <div class="image">
+          {{- $img := ( printf "%s.png" ( lower .Title ) ) -}}
+          {{- $images := .Page.Resources.ByType "image" -}}
+          {{- $original := .Resources.GetMatch $img -}}
+          {{- $tinyw := default "500x" -}}
+          {{- .Scratch.Set "tiny" ($original.Fill "200x200 webp") -}}
+          {{- $tiny := .Scratch.Get "tiny" }}
+          <img src="{{ $tiny.Permalink | absURL }}">
+        </div>
+        <div class="summary">
+          <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+          {{ with .Params.campaigndate.launch }}<p class="date">Launch: {{ dateFormat "Jan 2006" . }}</p>{{end}}
+          {{ with .Params.conversions.raised }}<p class="raise">Raised: ${{ lang.NumFmt 0 . }}</p>{{ end }}
+          {{ with .Params.client.industries }}<p class="industry">Industr{{ if gt ( len . ) 1 }}ies{{ else }}y{{ end }}: {{ range $index, $industry := . }}{{ if gt $index 0 }}, {{ end }}<a href="{{ "/industries/" | relURL }}{{ . | urlize }}">{{ . }}</a>{{ end }}</p>{{ end }}
+          {{ with .Params.highlights.services }}<p class="service">Service{{ if gt ( len . ) 1 }}s{{ end }}: {{ range $index, $service := . }}{{ if gt $index 0 }}, {{ end }}<a href="{{ "/service/" | relURL }}{{ . | urlize }}">{{ . }}</a>{{ end }}</p>{{ end }}
+        </div>
       </div>
-    {{ end }}
+    {{- end }}
   </div>
 </section>
-{{ end }}
+{{ end -}}

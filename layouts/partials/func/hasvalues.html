@@ -1,0 +1,12 @@
+{{ $return := false }}
+{{ .Scratch.Set "values" "" }}
+{{ with . }}
+  {{ range $key, $value := . }}
+      {{ .Scratch.Add "values" $value }}
+      {{ end }}
+  {{ if gt ( len ( .Scratch.Get "values"  ) ) 0 }}
+      {{ $return = true }}
+  {{ end }}
+{{ end }}
+
+{{ return $return }}

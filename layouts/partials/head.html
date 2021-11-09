@@ -1,18 +1,18 @@
-<!-- Styles and Fonts -->
-<!-- {{/* Scan all themes assets css folders for css and add them here */}} -->
-<!-- {{ $cssResources := slice }} -->
-<!-- {{ $dir := readDir "themes/simplimi/assets/css" }} -->
-<!-- {{ range $dir }} -->
-<!--   {{ $path := print "css/" .Name }} -->
-<!--   {{ $resource := resources.Get $path }} -->
-<!--   {{ $cssResources = $cssResources | append $resource }} -->
-<!-- {{ end }} -->
-<!-- {{ $cssBundle := $cssResources | resources.Concat "css/bundle.css" | fingerprint | minify }} -->
-<!-- <link rel="stylesheet" href="{{ $cssBundle.RelPermalink }}"> -->
+{{/* <!-- Styles and Fonts --> */}}
+{{/* <!-- {{/1* Scan all themes assets css folders for css and add them here *1/}} --> */}}
+{{/* <!-- {{ $cssResources := slice }} --> */}}
+{{/* <!-- {{ $dir := readDir "themes/danfolio/assets/css" }} --> */}}
+{{/* <!-- {{ range $dir }} --> */}}
+{{/* <!--   {{ $path := print "css/" .Name }} --> */}}
+{{/* <!--   {{ $resource := resources.Get $path }} --> */}}
+{{/* <!--   {{ $cssResources = $cssResources | append $resource }} --> */}}
+{{/* <!-- {{ end }} --> */}}
+{{/* <!-- {{ $cssBundle := $cssResources | resources.Concat "css/bundle.css" | fingerprint | minify }} --> */}}
+{{/* <!-- <link rel="stylesheet" href="{{ $cssBundle.RelPermalink }}"> --> */}}
 
-<!-- Above is for regular css in the assets/css folder, below is for scss in the sass folder -->
+{{/* <!-- Above is for regular css in the assets/css folder, below is for scss in the sass folder --> */}}
 
 {{ $options := (dict "targetPath" "style.css" "outputStyle" "compressed" "enableSourceMap" true "includePaths" (slice "node_modules/myscss")) }}
 {{ $sass := resources.Get "sass/main.scss" }}
 {{ $style := $sass | resources.ToCSS $options }}
-<link rel="stylesheet" href="{{ $cssBundle.RelPermalink }}">
+<link rel="stylesheet" href="{{ $style.RelPermalink }}">

@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+}
+
+div {
+	border-width: 1px;
+	border-color: black;
+}
+
+body {
+	background-color: #f7f3ef;
+	font-size: 1.5rem;
+	line-height: 130%;
+	padding-bottom: 1.5rem;
+}
+
+/* 3-column Layout */
+
+#div-right, #div-left {
+	float: left;
+	width: 20%;
+	background-color: red;
+	padding: 10px;
+}
+
+#div-center {
+	float: left;
+	width: 60%;
+}
+
+/* Clear floats after the columns */
+
+#div-body:after {
+      clear: both;
+}
+
+
+// 1. Change all 'id' to 'class' and tags(?) in divs and stuff.
+// 2. Figma a quick design so I know what I'm trying to create
+// 3. Start separating it into bits
+// 4. Finally start filling in this doc

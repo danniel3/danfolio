@@ -1,0 +1,12 @@
+// $bodyfont: "Roboto Mono", sans-serif;
+// $titlefont: "Mohave", serif;
+// $monofont: Inconsolata, monospace;
+
+$header-font: 'mohave';
+
+@font-face {
+  font-family: 'mohave';
+  src: url('../fonts/Mohave-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}

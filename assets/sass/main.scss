@@ -1,19 +1,12 @@
-$bodyfont: "Roboto Mono", sans-serif;
-$titlefont: "Mohave", serif;
-$monofont: Inconsolata, monospace;
-
-@font-face {
-  font-family: "Title";
-  font-weight: 400;
-  src: url("../fonts/Mohave-Regular.woff2") format("woff2");
-}
+@use 'src/typography' as typo;
 
 body {
 	background-color: #FFFCFC;
-	font-size: 1rem;
-	line-height: 130%;
-	padding-bottom: 2rem;
-	font-family: "Title";
+	// font-size: 1rem;
+	// line-height: 130%;
+	// padding-bottom: 2rem;
+	font-color: red;
+	font-family: 'typography.$header-font';
 }
 
 div {

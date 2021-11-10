@@ -4,16 +4,15 @@
     	{{- partial "head.html" . -}}
     </head>
     <body>
-        {{- partial "navigation.html" . -}}
-	<div id="div-body">
-		<div id="div-left">
-                {{- partial "toc.html" . -}}
+	<div class="div-body">
+		<div class="column div-left">
+        		{{- partial "navigation.html" . -}}
 		</div>
-		<div id="div-center">
+		<div class="column div-center">
 		        {{- block "main" . }}{{- end }}
 		        {{- partial "center-footer.html" . -}}
 		</div>
-		<div id="div-right">
+		<div class="column div-right">
 		</div>
 	</div>
     </body>

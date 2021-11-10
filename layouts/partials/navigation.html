@@ -1,27 +1,20 @@
-<div id="div-head">
+<div class="div-menu">
     <nav id="navbar">
-        <a href="{{ .Site.Home.Permalink }}">{{ .Site.Home.Title }}</a>
-        <ul>
+
+	<div class="title">
+	    <a href="{{ .Site.Home.Permalink }}">{{ .Site.Home.Title }}</a>
+	</div>
+
+        <ul class="main-menu">
             {{ $currentPage := . }}
             {{ range .Site.Menus.navigation.ByWeight }}
             <li>
-                <a class='{{if or ($currentPage.IsMenuCurrent "navigation" .) ($currentPage.HasMenuCurrent "navigation" .) }}menu-active{{ end }}'
-                    href="{{ absURL .URL }}">
+                <a class='{{if or ($currentPage.IsMenuCurrent "navigation" .) ($currentPage.HasMenuCurrent "navigation" .) }}menu-active{{ end }}' href="{{ absURL .URL }}">
                     {{ .Title }}
-                    <!-- {{ if .Page.IsSection }} -->
-                    <!-- {{ .Title | pluralize }} -->
-                    <!-- {{ else }} -->
-                    <!-- {{ end }} -->
                 </a>
             </li>
             {{ end }}
         </ul>
+
     </nav>
-	<!-- <div id="div-head-logo"> -->
-	<!-- 	<p id="p-logo">thedanniel.com</p> -->
-	<!-- </div> -->
-	<!-- <div id="div-head-menu"> -->
-	<!-- </div> -->
-	<!-- <div id="div-head-search"> -->
-	<!-- </div> -->
 </div>

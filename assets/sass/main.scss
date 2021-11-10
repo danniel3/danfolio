@@ -1,25 +1,34 @@
-* {
-  box-sizing: border-box;
-}
+$bodyfont: "Roboto Mono", sans-serif;
+$titlefont: "Mohave", serif;
+$monofont: Inconsolata, monospace;
 
-div {
-	border-width: 1px;
-	border-color: black;
+@font-face {
+  font-family: "Title";
+  font-weight: 400;
+  src: url("../fonts/Mohave-Regular.woff2") format("woff2");
 }
 
 body {
-	background-color: #f7f3ef;
-	font-size: 1.5rem;
+	background-color: #FFFCFC;
+	font-size: 1rem;
 	line-height: 130%;
-	padding-bottom: 1.5rem;
+	padding-bottom: 2rem;
+	font-family: "Title";
 }
 
+div {
+	&-menu {
+		title {
+			font-family: "Title", monospace;
+		}
+	}
+}
 /* 3-column Layout */
 
 #div-right, #div-left {
 	float: left;
 	width: 20%;
-	background-color: red;
+	background-color: blue;
 	padding: 10px;
 }
 

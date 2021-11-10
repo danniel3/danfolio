@@ -6,6 +6,31 @@
 
 @import 'src/nav';
 
+/* Document level adjustments */
+
+html {
+	font-size: 62.5%;
+	color: $color-1;
+
+	a {
+		color: $color-1;
+		text-decoration: none;
+
+		&:hover {
+			color: $color-2;
+			background-color: $color-3;
+		}
+	}
+}
+
+@media (max-width: 900px) {
+  html { font-size: 15px; }
+}
+
+@media (max-width: 400px) {
+  html { font-size: 13px; }
+}
+
 body {
 	margin: 0;
 	background-color: $color-bg;

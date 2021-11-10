@@ -1,6 +1,26 @@
-div-menu {
-	title {
-		font-family: $header-font;
-		font-size: 3em;
+.sitetitle {
+	font-family: $monofont;
+	font-size: 2.5rem;
+
+	.subtitle {
+		font-size: 1.7rem;
+		color: $color-4;
+		margin-block-start: 0.5em;
+	}
+}
+
+.main-menu {
+	font-family: $headfont;
+	font-size: 1.7em;
+}
+
+.div-menu {
+	margin-left: 3em;
+	border-left: 2px solid $color-3;
+
+	ul, li {
+		list-style-type: none;
+		margin-left: 0.5em;
+		padding: 0;
 	}
 }

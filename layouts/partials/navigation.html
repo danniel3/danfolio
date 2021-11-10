@@ -1,16 +1,17 @@
-<div class="div-menu">
-    <nav id="navbar">
 
-	<div class="title">
+	<div class="sitetitle">
 	    <a href="{{ .Site.Home.Permalink }}">{{ .Site.Home.Title }}</a>
+	    <p class="subtitle">copywriting. positioning. strategy.</p>
 	</div>
 
+<div class="div-menu">
+    <nav id="navbar">
         <ul class="main-menu">
             {{ $currentPage := . }}
             {{ range .Site.Menus.navigation.ByWeight }}
             <li>
-                <a class='{{if or ($currentPage.IsMenuCurrent "navigation" .) ($currentPage.HasMenuCurrent "navigation" .) }}menu-active{{ end }}' href="{{ absURL .URL }}">
-                    {{ .Title }}
+                <a class="{{if or ($currentPage.IsMenuCurrent "navigation" .) ($currentPage.HasMenuCurrent "navigation" .) }}menu-active{{ end }}" href="{{ absURL .URL }}">
+                    {{ .Title | lower }}
                 </a>
             </li>
             {{ end }}

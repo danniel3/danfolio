@@ -1,40 +1,16 @@
-@use 'src/typography' as typo;
+@import 'src/typography';
+
+@import 'src/colors';
+
+@import 'src/maindiv';
+
+@import 'src/nav';
 
 body {
-	background-color: #FFFCFC;
-	// font-size: 1rem;
-	// line-height: 130%;
-	// padding-bottom: 2rem;
-	font-color: red;
-	font-family: 'typography.$header-font';
+	margin: 0;
+	background-color: $color-bg;
 }
 
-div {
-	&-menu {
-		title {
-			font-family: "Title", monospace;
-		}
-	}
-}
-/* 3-column Layout */
-
-#div-right, #div-left {
-	float: left;
-	width: 20%;
-	background-color: blue;
-	padding: 10px;
-}
-
-#div-center {
-	float: left;
-	width: 60%;
-}
-
-/* Clear floats after the columns */
-
-#div-body:after {
-      clear: both;
-}
 
 
 // 1. Change all 'id' to 'class' and tags(?) in divs and stuff.

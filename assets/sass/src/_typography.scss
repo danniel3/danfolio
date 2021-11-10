@@ -1,12 +1,49 @@
 // $bodyfont: "Roboto Mono", sans-serif;
 // $titlefont: "Mohave", serif;
-// $monofont: Inconsolata, monospace;
 
-$header-font: 'mohave';
+$monofont: 'inconsolata', monospace;
+$headfont: 'mohave';
+$bodyfont: 'amiko';
 
+/* mohave-regular - latin */
 @font-face {
   font-family: 'mohave';
-  src: url('../fonts/Mohave-Regular.woff2') format('woff2');
-  font-weight: normal;
   font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/mohave-v2-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../fonts/mohave-v2-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/mohave-v2-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/mohave-v2-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/mohave-v2-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/mohave-v2-latin-regular.svg#Mohave') format('svg'); /* Legacy iOS */
+}
+
+/* amiko-regular - latin */
+@font-face {
+  font-family: 'amiko';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/amiko-v5-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../fonts/amiko-v5-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/amiko-v5-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/amiko-v5-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/amiko-v5-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/amiko-v5-latin-regular.svg#Amiko') format('svg'); /* Legacy iOS */
+}
+
+/* inconsolata-regular - latin */
+@font-face {
+  font-family: 'inconsolata';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/inconsolata-v21-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Insonsolata'),
+       //local('Liberation Mono'),
+       url('../fonts/inconsolata-v21-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/inconsolata-v21-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/inconsolata-v21-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/inconsolata-v21-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/inconsolata-v21-latin-regular.svg#Inconsolata') format('svg'); /* Legacy iOS */
 }

@@ -1,5 +1,22 @@
 {{- define "main" }}
-<div id="div-body">
+<div class="div-content">
+
+	<div class="header">
+		<h1>{{ .Title | upper }}</h1>
+
+		<div class="tags">
+			<!-- Industry and Platform -->
+			{{ with .Params.client.industries }}
+				<p class="tags"><strong>industr{{ if gt (len .) 1 }}ies{{ else }}y{{ end }}:</strong>
+				{{ range $index, $industry := . }}{{ if gt $index 0 }}, {{ end }}<a href="{{ "/industries/" | relURL }}{{ . | urlize }}">{{ . | lower }}</a>{{ end }}</p>
+			{{ end }}
+			{{ with .Params.client.media }}
+				<p class="tags"><strong>medi{{ if gt (len .) 1 }}a{{ else }}um{{ end }}:</strong>
+				{{ range $index, $media := . }}{{ if gt $index 0 }}, {{ end }}<a href="{{ "/medium/" | relURL }}{{ . | urlize }}">{{ . | lower }}</a>{{ end }}</p>
+			{{ end }}
+		</div>
+
+	</div>
 
 	<!-- Header Image -->
  	{{- $img := ( printf "%s.png" ( lower .Title ) ) -}}
@@ -11,19 +28,23 @@
          </div>
     {{ end }}
 
-	<h1>{{ .Title }}</h1>
 
-	<!-- Launch date -->
-	<h6>{{ dateFormat "January 2006" .Params.campaigndate.launch }}</h6>
-
-	<!-- Industry and Platform -->
-	{{ if .Params.client.industries }}
-		<strong>Industr{{ if gt (len .Params.client.industries) 1 }}ies{{ else }}y{{ end }}:</strong>
-  			{{ range $index, $industry := .Params.client.industries }}{{ if gt $index 0 }}, {{ end }}<a href="{{ "/industries/" | relURL }}{{ . | urlize }}">{{ . }}</a>{{ end }}
-	{{ end }}
-	{{ if .Params.client.media }}
-		<strong>Medi{{ if gt (len .Params.client.media) 1 }}a{{ else }}um{{ end }}:</strong>
-  			{{ range $index, $media := .Params.client.media }}{{ if gt $index 0 }}, {{ end }}<a href="{{ "/medium/" | relURL }}{{ . | urlize }}">{{ . }}</a>{{ end }}
+	<!-- Numbers -->
+	{{ with .Params.results }}
+		<div class="results">
+			{{ range $k, $v := . }}
+			{{ if gt $v 0 }}
+			<div class="instance">
+				<div class="number">
+					{{ lang.NumFmt 0 $v }}
+				</div>
+				<div class="text">
+					{{ $k }}
+				</div>
+			</div>
+			{{ end }}
+			{{ end }}
+		</div>
 	{{ end }}
 
 	<!-- Highlights -->
@@ -51,26 +72,6 @@
 	{{ with .Params.highlights.results }}
 		<h2>Results</h2>
 		<p>{{ . }}</p>
-	{{ end }}
-
-	<!-- Conversions -->
-	{{ if gt ( or .Params.conversions.raised .Params.conversions.visitors .Params.conversions.conversions ) 1  }}
-		<h3>Stats</h3>
-		<ul>
-			{{ with .Params.conversions.raised }}
-				<li>Raised: ${{ lang.NumFmt 0 . }}</li>
-			{{ end }}
-			{{ with .Params.conversions.visitors }}
-				<li>Visitors: {{ lang.NumFmt 0 . }}</li>
-			{{ end }}
-			{{ with .Params.conversions.conversions }}
-				<li>Conversions: {{ lang.NumFmt 0 . }}</li>
-			{{ end }}
-			{{ with and .Params.conversions.conversions .Params.conversions.visitors ( dict "visitors" .Params.conversions.visitors "conversions" .Params.conversions.conversions ) }}
-				<li>Conversion Rate {{ lang.NumFmt 2 ( mul ( div .conversions .visitors ) 100 ) }}%</li>
-			{{ end }}
-		</ul>
-		{{ else }}
 	{{ end }}
 
 	<!-- Services -->

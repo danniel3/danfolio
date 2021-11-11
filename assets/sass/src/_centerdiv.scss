@@ -1,1 +1,45 @@
 // Portfolio Page as example
+
+.div-content {
+	font-size: 2rem;
+
+	// Title & tags
+	.header {
+		padding-bottom: 1em;
+
+		h1 {
+			font-family: $headfont;
+			font-size: 2em;
+			color: $color-2;
+			margin: 0;
+		}
+
+		.tags {
+			font-family: $headfont;
+			font-size: 0.9em;
+			margin: 0;
+			color: $color-4;
+
+			a {
+				color: $color-4;
+			}
+		}
+	}
+
+	// Result numbers
+	.results {
+		display: flex;
+		text-align: center;
+		justify-content:center;
+  		//width: 600px;
+  		//margin: 0 auto;
+		.instance {
+			margin: 20px;
+		}
+	}
+
+	p {
+		font-family: $bodyfont;
+	}
+
+}

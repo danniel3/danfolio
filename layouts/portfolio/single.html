@@ -36,7 +36,8 @@
 			{{ if gt $v 0 }}
 			<div class="instance">
 				<div class="number">
-					{{ lang.NumFmt 0 $v }}
+					{{ if in $k " rate" }}{{ lang.NumFmt 2 $v }}%{{ else }}
+					{{ if eq $k "generated" }}${{end}}{{ lang.NumFmt 0 $v }}{{ end }}
 				</div>
 				<div class="text">
 					{{ $k }}

@@ -34,7 +34,19 @@
   		//width: 600px;
   		//margin: 0 auto;
 		.instance {
-			margin: 20px;
+			margin: 4em;
+
+			.number {
+				border-bottom: 0.2em solid $color-3;
+  				display: inline-block;
+  				line-height: 0.85;
+				font-family: $dispfont;
+				color: $color-2;
+				font-size: 2em;
+			}
+			.text {
+				font-family: $headfont;
+			}
 		}
 	}
 

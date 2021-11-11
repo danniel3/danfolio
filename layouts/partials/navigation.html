@@ -8,7 +8,8 @@
     <nav id="navbar">
         <ul class="main-menu">
             {{ $currentPage := . }}
-            {{ range .Site.Menus.navigation.ByWeight }}
+            {{/* {{ range .Site.Menus.navigation.ByWeight }} */}}
+            {{ range .Site.Menus.main }}
             <li>
                 <a class="{{if or ($currentPage.IsMenuCurrent "navigation" .) ($currentPage.HasMenuCurrent "navigation" .) }}menu-active{{ end }}" href="{{ absURL .URL }}">
                     {{ .Title | lower }}

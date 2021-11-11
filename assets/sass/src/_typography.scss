@@ -4,6 +4,7 @@
 $monofont: 'inconsolata', monospace;
 $headfont: 'mohave';
 $bodyfont: 'amiko';
+$dispfont: 'fruktur';
 
 /* mohave-regular - latin */
 @font-face {
@@ -39,11 +40,25 @@ $bodyfont: 'amiko';
   font-style: normal;
   font-weight: 400;
   src: url('../fonts/inconsolata-v21-latin-regular.eot'); /* IE9 Compat Modes */
-  src: local('Insonsolata'),
+  src: local(''),
        //local('Liberation Mono'),
        url('../fonts/inconsolata-v21-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
        url('../fonts/inconsolata-v21-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
        url('../fonts/inconsolata-v21-latin-regular.woff') format('woff'), /* Modern Browsers */
        url('../fonts/inconsolata-v21-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
        url('../fonts/inconsolata-v21-latin-regular.svg#Inconsolata') format('svg'); /* Legacy iOS */
+}
+
+/* fruktur-regular - latin */
+@font-face {
+  font-family: 'fruktur';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/fruktur-v15-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../fonts/fruktur-v15-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/fruktur-v15-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/fruktur-v15-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/fruktur-v15-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/fruktur-v15-latin-regular.svg#Fruktur') format('svg'); /* Legacy iOS */
 }

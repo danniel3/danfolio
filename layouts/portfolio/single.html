@@ -103,8 +103,32 @@
 	{{ $headername := printf "%s%s" ( lower .Title ) ".png" }}
     	{{ range where $images "Name" "not in" $headername }}
         <div class="image">
-			{{ $image200x := (.Resize "200x webp") }}
-            <img src="{{ $image200x.Permalink | absURL }}">
+			{{ $tiny := (.Resize "300x webp") }}
+			{{ $small := (.Resize "400x webp") }}
+			{{ $medium := (.Resize "600x webp") }}
+			{{ $large := (.Resize "800x webp") }}
+			{{ $xlarge := (.Resize "1000x webp") }}
+
+			<a href="{{ .Permalink | absURL }}">
+				<img src="{{ $tiny.Permalink | absURL }}"
+					srcset="{{ $tiny.Permalink | absURL }} 300w,
+						{{ $small.Permalink | absURL }} 400w,
+						{{ $medium.Permalink | absURL }} 600w,
+						{{ $large.Permalink | absURL }} 800w,
+						{{ $xlarge.Permalink | absURL }} 1000w"
+					sizes="(min-width: 640px) 40vw,
+					       (min-width: 768px) 40vw,
+					       (min-width: 1024px) 40vw,
+					       (min-width: 1366px) 40vw,
+					       (min-width: 1600px) 40vw,
+					       (min-width: 1920px) 40vw"
+
+					alt="Image about {{ $.Params.Title }} Copywriting by Danniel Roumian Booker">
+			</a>
+
+			<!-- Standard display sizes: 1920, 1600, 1366 (common), 1024, 768, 640 -->
+			<!-- As this box will never be more than 1000px (100 rem x 10px), the largest needed is 1000 -->
+
         </div>
 	{{ end }}
 

@@ -48,32 +48,66 @@
 		</div>
 	{{ end }}
 
+	<!-- Testimonial -->
+	{{ with ( index .Params.testimonial 0 "name" ) }}
+		<div class="quote">
+		{{ range $.Params.testimonial }}
+			<div class="text">
+				<p><strong class="quote">“</strong>{{.quote}}</p>
+			</div>
+			<div class="author">
+				{{ with .link }}<a href="https://{{ . }}">{{ end }}{{ .name | lower }}</a>, {{ .position | lower }} @ {{ .company | lower }}
+			</div>
+		{{ end }}
+		</div>
+	{{ end }}
+
 	<!-- Highlights -->
+	{{ .Content }}
 	{{ with .Params.highlights.brief }}
-		<h2>Brief</h2>
+		<h2>brief</h2>
 		<p>{{ . }}</p>
 	{{ end }}
 
 	<!-- Solutions -->
 	{{ with .Params.highlights.solution }}
-		<h2>Solutions</h2>
+		<h2>solutions</h2>
 		<p>{{ . }}</p>
-	{{ end }}
-
-	<!-- Testimonial -->
-	{{ with ( index .Params.testimonial 0 "name" ) }}
-		<h2>Testimonials</h2>
-		{{ range $.Params.testimonial }}
-			<p>{{.quote}}</p>
-			<p>{{ with .link }}<a href="https://{{ . }}">{{ end }}{{ .name }}</a>, {{ .position }} at {{ .company }}</p>
-		{{ end }}
 	{{ end }}
 
 	<!-- Results -->
 	{{ with .Params.highlights.results }}
-		<h2>Results</h2>
+		<h2>results</h2>
 		<p>{{ . }}</p>
 	{{ end }}
+
+	<!-- Media Mentions -->
+	{{ with ( index .Params.featured 0 "media" ) }}
+		<div class="quote">
+			{{ range $.Params.featured }}
+			<div class="text">
+				<p><strong class="quote">“</strong>{{.quote}}</p>
+				{{/* <p>{{ with .quote }}{{ . }}{{ end }}</p> */}}
+			</div>
+			<div class="author">
+				{{/* {{ with .link }}<a href="{{ . }}">{{ end }}{{ .media }}</a> */}}
+				{{ .media }}
+			</div>
+			{{/* <a href="{{ "/media/" | relLangURL }}{{ .media | urlize }}">See more coverage by {{ .media }}</a> */}}
+			{{ end }}
+		</div>
+	{{ end }}
+
+	<!-- Images -->
+    	{{- $images := .Page.Resources.ByType "image" -}}
+	{{ $headername := printf "%s%s" ( lower .Title ) ".png" }}
+    	{{ range where $images "Name" "not in" $headername }}
+        <div class="image">
+			{{ $image200x := (.Resize "200x webp") }}
+            <img src="{{ $image200x.Permalink | absURL }}">
+        </div>
+	{{ end }}
+
 
 	<!-- Services -->
 	{{ with .Params.highlights.services }}
@@ -81,18 +115,6 @@
 		<ul id="tags">
 			{{ range $.Params.highlights.services }}
 			<li><a href="{{ "/services/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> </li>
-			{{ end }}
-		</ul>
-	{{ end }}
-
-	<!-- Media Mentions -->
-	{{ with ( index .Params.featured 0 "media" ) }}
-		<h2>Featured in</h2>
-		<ul>
-			{{ range $.Params.featured }}
-				<li>
-					{{ with .link }}<a href="{{ . }}">{{ end }}{{ .media }}</a>{{ with .quote }} | {{ . }}{{ end }} | <a href="{{ "/media/" | relLangURL }}{{ .media | urlize }}">See more coverage by {{ .media }}</a>
-				</li>
 			{{ end }}
 		</ul>
 	{{ end }}
@@ -119,17 +141,6 @@
 			<p>{{ . }}</p>
 		{{ end }}
 	{{ end }}
-
-	<!-- Images -->
-    {{- $images := .Page.Resources.ByType "image" -}}
-	{{ $headername := printf "%s%s" ( lower .Title ) ".png" }}
-    {{ range where $images "Name" "not in" $headername }}
-        <div class="image">
-			{{ $image200x := (.Resize "200x webp") }}
-            <img src="{{ $image200x.Permalink | absURL }}">
-        </div>
-	{{ end }}
-
 	<!-- {{ .Content }} -->
 </div>
 {{ end }}

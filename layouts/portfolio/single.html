@@ -20,11 +20,24 @@
 
 	<!-- Header Image -->
  	{{- $img := ( printf "%s.png" ( lower .Title ) ) -}}
-    {{- $original := .Resources.GetMatch $img -}}
-    {{ with .Resources.GetMatch $img }}
-        <div class="header image">
-			{{ $imageheader := (.Fill "600x200 webp center") }}
-            <img src="{{ $imageheader.Permalink | absURL }}">
+    	{{- $original := .Resources.GetMatch $img -}}
+    	{{ with .Resources.GetMatch $img }}
+        	<div class="header image">
+			{{ $tiny := (.Fill "480x140 webp center") }}
+			{{ $medium := (.Fill "700x200 webp center") }}
+			{{ $large := (.Fill "1000x300 webp center") }}
+
+				<img src="{{ $tiny.Permalink | absURL }}"
+
+					srcset="{{ $tiny.Permalink | absURL }} 480w,
+						{{ $medium.Permalink | absURL }} 700w,
+						{{ $large.Permalink | absURL }} 1000w"
+
+					sizes="(min-width: 1000px) 1000px,
+					       (min-width: 768px) 700px,
+					       480px"
+
+					alt="Image about {{ $.Params.Title }} Copywriting by Danniel Roumian Booker">
          </div>
     {{ end }}
 
@@ -111,17 +124,19 @@
 
 			<a href="{{ .Permalink | absURL }}">
 				<img src="{{ $tiny.Permalink | absURL }}"
+
 					srcset="{{ $tiny.Permalink | absURL }} 300w,
 						{{ $small.Permalink | absURL }} 400w,
 						{{ $medium.Permalink | absURL }} 600w,
 						{{ $large.Permalink | absURL }} 800w,
 						{{ $xlarge.Permalink | absURL }} 1000w"
+
 					sizes="(min-width: 640px) 40vw,
 					       (min-width: 768px) 40vw,
 					       (min-width: 1024px) 40vw,
 					       (min-width: 1366px) 40vw,
 					       (min-width: 1600px) 40vw,
-					       (min-width: 1920px) 40vw"
+					       (min-width: 1920px) 1000px"
 
 					alt="Image about {{ $.Params.Title }} Copywriting by Danniel Roumian Booker">
 			</a>

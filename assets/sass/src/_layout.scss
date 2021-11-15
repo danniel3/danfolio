@@ -10,16 +10,30 @@
 		&.div-left {
 			//background-color: red;
 			width: 20%;
+
+			@media screen and (min-width: 1000px) {
+				min-width: 350px;
+			}
+
+			@media screen and (max-width: 400px) {
+				display: none;
+			}
+
 		}
 
 		&.div-right {
 			background-color: pink;
 			width: 20%;
+
+			@media screen and (max-width: 135rem) {
+				display: none;
+			}
+
 		}
 		&.div-center {
 			//background-color: blue;
 			width: 60%;
-			max-width: 100rem;
+			max-width: 1000px;
 			//max-width: 680px;
 		}
 	}

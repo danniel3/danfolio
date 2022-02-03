@@ -2,6 +2,10 @@
 	font-family: $monofont;
 	font-size: 2.5rem;
 
+	a {
+		text-decoration: none;
+	}
+
 	.subtitle {
 		font-size: 1.7rem;
 		color: $color-4;
@@ -17,6 +21,10 @@
 .div-menu {
 	margin-left: 3em;
 	border-left: 2px solid $color-3;
+
+	a {
+		text-decoration: none;
+	}
 
 	ul, li {
 		list-style-type: none;

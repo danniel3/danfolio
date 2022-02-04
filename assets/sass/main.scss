@@ -1,42 +1,14 @@
-@import 'src/typography';
+@import 'base/typography';
 
-@import 'src/colors';
+@import 'base/colors';
 
-@import 'src/layout';
+@import 'base/main';
 
-@import 'src/centerdiv';
+@import 'layout/layout';
 
-@import 'src/nav';
+@import 'layout/centerdiv';
 
-/* Document level adjustments */
-
-html {
-	font-size: 62.5%;
-	color: $color-1;
-
-	body {
-		margin: 0;
-		background-color: $color-bg;
-
-		a {
-			color: $color-4;
-			text-decoration: underline $color-3;
-
-			&:hover {
-				color: $color-2 !important;
-				background-color: $color-3 !important;
-			}
-		}
-	}
-}
-@media (max-width: 900px) {
-  html { font-size: 15px; }
-}
-
-@media (max-width: 400px) {
-  html { font-size: 13px; }
-}
-
+@import 'layout/nav';
 
 // 1. Change all 'id' to 'class' and tags(?) in divs and stuff.
 // 2. Figma a quick design so I know what I'm trying to create

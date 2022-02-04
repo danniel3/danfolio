@@ -1,21 +1,6 @@
 // Portfolio Page as example
 
 .div-content {
-	font-size: 2rem;
-
-	h2 {
-		font-family: $headfont;
-		color: $color-2;
-		font-size: 1.25em;
-		font-weight: normal;
-		border-bottom: 0.1em solid $color-3;
-		//width: 25%;
-		padding-bottom: 0.3em;
-	}
-
-	p {
-		font-family: $bodyfont;
-	}
 
 	img {
 
@@ -26,24 +11,6 @@
 	// Title & tags
 	.header {
 		padding-bottom: 1em;
-
-		h1 {
-			font-family: $headfont;
-			font-size: 2em;
-			color: $color-2;
-			margin: 0;
-		}
-
-		.tags {
-			font-family: $headfont;
-			font-size: 0.9em;
-			margin: 0;
-			color: $color-4;
-
-			a {
-				color: $color-4;
-			}
-		}
 	}
 
 	// Result numbers
@@ -55,34 +22,19 @@
   		//margin: 0 auto;
 		.instance {
 			margin: 4em;
-
-			.number {
-				border-bottom: 0.2em solid $color-3;
-  				display: inline-block;
-  				line-height: 0.85;
-				font-family: $dispfont;
-				color: $color-2;
-				font-size: 2em;
-			}
-			.text {
-				font-family: $headfont;
-			}
 		}
 	}
 
+	// Start fixing from here
 	.quote {
 		margin: auto;
 		width: 80%;
 		max-width: 30em;
 
-		p {
-			font-family: $monofont;
-		}
-
 		.text {
+			text-indent: -2em;
 			margin-bottom: -0.5em;
 			display: inline;
-			text-indent: -2em; //For the quotation mark
 
 			strong.quote { // Quotation mark
 				font-family: $monofont;

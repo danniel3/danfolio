@@ -49,11 +49,11 @@
 			{{ if gt $v 0 }}
 			<div class="instance">
 				<div class="number">
-					{{ if in $k " rate" }}{{ lang.NumFmt 2 $v }}%{{ else }}
-					{{ if eq $k "generated" }}${{end}}{{ lang.NumFmt 0 $v }}{{ end }}
+					<p class="number">{{ if in $k " rate" }}{{ lang.NumFmt 2 $v }}%{{ else }}
+					{{ if eq $k "generated" }}${{end}}{{ lang.NumFmt 0 $v }}{{ end }}</p>
 				</div>
 				<div class="text">
-					{{ $k }}
+					<p class="head">{{ $k }}</p>
 				</div>
 			</div>
 			{{ end }}
@@ -66,10 +66,10 @@
 		<div class="quote">
 		{{ range $.Params.testimonial }}
 			<div class="text">
-				<p><strong class="quote">“</strong>{{.quote}}</p>
+				<strong class="quote">“</strong><p class="quote">{{.quote}}</p>
 			</div>
 			<div class="author">
-				{{ with .link }}<a href="https://{{ . }}">{{ end }}{{ .name | lower }}</a>, {{ .position | lower }} @ {{ .company | lower }}
+				<p class="quote author">{{ with .link }}<a href="https://{{ . }}">{{ end }}{{ .name | lower }}</a>, {{ .position | lower }} @ {{ .company | lower }}</p>
 			</div>
 		{{ end }}
 		</div>

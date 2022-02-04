@@ -1,0 +1,54 @@
+.div-content {
+	font-size: 2rem;
+}
+
+h1 {
+	font-family: $headfont;
+	font-size: 2em;
+	color: $color-2;
+	margin: 0;
+}
+
+h2 {
+	font-family: $headfont;
+	color: $color-2;
+	font-size: 1.25em;
+	font-weight: normal;
+	border-bottom: 0.1em solid $color-3;
+	padding-bottom: 0.3em;
+	//width: 25%;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+	font-family: $bodyfont;
+
+    &.number {
+	    border-bottom: 0.2em solid $color-3;
+	    display: inline-block;
+	    line-height: 0.85;
+	    font-family: $dispfont;
+	    color: $color-2;
+	    font-size: 2em;
+    }
+
+    &.head {
+	    font-family: $headfont;
+    }
+
+    &.quote {
+        font-family: $monofont;
+        display: inline;
+    }
+	&.tags {
+		font-family: $headfont;
+		font-size: 0.9em;
+		margin: 0;
+		color: $color-4;
+
+		a {
+			color: $color-4;
+		}
+	}
+}

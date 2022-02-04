@@ -1,8 +1,10 @@
-@import 'base/typography';
+@import 'abstract/fonts';
 
-@import 'base/colors';
+@import 'abstract/variables';
 
 @import 'base/main';
+
+@import 'base/typography';
 
 @import 'layout/layout';
 

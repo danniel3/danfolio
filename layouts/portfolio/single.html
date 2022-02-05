@@ -65,14 +65,13 @@
 	{{ with ( index .Params.testimonial 0 "name" ) }}
 		<div class="quote-block">
 		{{ range $.Params.testimonial }}
-		<div class="quote-single">
-			<div class="text">
-				<blockquote class="quote">{{.quote}}</blockquote>
-				<!-- <strong class="quote">“</strong><p class="quote">{{.quote}}</p> -->
-			</div>
-			<div class="author">
-				<p class="author">{{ with .link }}<a href="https://{{ . }}">{{ end }}{{ .name | lower }}</a>, {{ .position | lower }} @ {{ .company | lower }}</p>
-			</div>
+			<div class="quote-single">
+				<div class="text">
+					<blockquote class="quote">{{.quote}}</blockquote>
+				</div>
+				<div class="author">
+					<p class="author">{{ with .link }}<a href="https://{{ . }}">{{ end }}{{ .name | lower }}</a>, {{ .position | lower }} @ {{ .company | lower }}</p>
+				</div>
 			</div>
 		{{ end }}
 		</div>
@@ -99,17 +98,18 @@
 
 	<!-- Media Mentions -->
 	{{ with ( index .Params.featured 0 "media" ) }}
-		<div class="quote">
+		<div class="quote-block">
 			{{ range $.Params.featured }}
-			<div class="text">
-				<p><strong class="quote">“</strong>{{.quote}}</p>
-				{{/* <p>{{ with .quote }}{{ . }}{{ end }}</p> */}}
-			</div>
-			<div class="author">
-				{{/* {{ with .link }}<a href="{{ . }}">{{ end }}{{ .media }}</a> */}}
-				{{ .media }}
-			</div>
-			{{/* <a href="{{ "/media/" | relLangURL }}{{ .media | urlize }}">See more coverage by {{ .media }}</a> */}}
+				<div class="quote-single">
+					<div class="text">
+						<blockquote class="quote">{{.quote}}</blockquote>
+					</div>
+					<div class="author">
+						<p class="author">{{ .media }}</p>
+						{{/* {{ with .link }}<a href="{{ . }}">{{ end }}{{ .media }}</a> */}}
+						{{/* <a href="{{ "/media/" | relLangURL }}{{ .media | urlize }}">See more coverage by {{ .media }}</a> */}}
+					</div>
+				</div>
 			{{ end }}
 		</div>
 	{{ end }}

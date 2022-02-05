@@ -52,3 +52,13 @@ p {
 		}
 	}
 }
+
+a {
+	color: $color-4;
+	text-decoration: underline $color-3;
+
+	&:hover {
+		color: $color-2 !important;
+		background-color: $color-3 !important;
+	}
+}

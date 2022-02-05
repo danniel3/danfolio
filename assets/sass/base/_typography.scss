@@ -15,19 +15,21 @@ h2 {
 	font-size: 1.25em;
 	font-weight: normal;
 	border-bottom: 0.1em solid $color-3;
-	padding-bottom: 0.3em;
+	// padding-bottom: 0.3em;
 	//width: 25%;
 }
 
 p {
     margin: 0;
     padding: 0;
+    padding-bottom: 1em;
 	font-family: $bodyfont;
 
     &.number {
 	    border-bottom: 0.2em solid $color-3;
 	    display: inline-block;
-	    line-height: 0.85;
+        padding-bottom: 0;
+	    line-height: 0.85em;
 	    font-family: $dispfont;
 	    color: $color-2;
 	    font-size: 2em;
@@ -42,6 +44,7 @@ p {
 		font-size: 0.9em;
 		margin: 0;
 		color: $color-4;
+        padding-bottom: 0em;
 
 		a {
 			color: $color-4;
@@ -50,7 +53,7 @@ p {
 
 	&.author {
 		font-family: $headfont;
-		// color: $color-2 !important;
+		color: $color-4;
 		text-align: right;
 
 		&:before {
@@ -95,4 +98,21 @@ blockquote {
     text-indent: 0;
     hanging-punctuation: first;
   }
+}
+
+ul {
+  list-style: none; /* Remove default bullets */
+
+  li:before {
+    content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+    color: $color-2; /* Change the color */
+    font-weight: bold; /* If you want it to be bold */
+    display: inline-block; /* Needed to add space between the bullet and the text */
+    width: 1em; /* Also needed for space (tweak if needed) */
+    margin-left: -1em; /* Also needed for space (tweak if needed) */
+  }
+}
+
+li {
+    font-family: $bodyfont;
 }

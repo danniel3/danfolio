@@ -37,10 +37,6 @@ p {
 	    font-family: $headfont;
     }
 
-    &.quote {
-        font-family: $monofont;
-        display: inline;
-    }
 	&.tags {
 		font-family: $headfont;
 		font-size: 0.9em;
@@ -49,6 +45,16 @@ p {
 
 		a {
 			color: $color-4;
+		}
+	}
+
+	&.author {
+		font-family: $headfont;
+		// color: $color-2 !important;
+		text-align: right;
+
+		&:before {
+			content: "— ";
 		}
 	}
 }
@@ -61,4 +67,32 @@ a {
 		color: $color-2 !important;
 		background-color: $color-3 !important;
 	}
+}
+
+blockquote {
+  text-indent: -2em;
+  font-family: $monofont;
+  quotes: "“" "" "“" "";
+
+  &:before {
+    content: open-quote;
+    font-family: $monofont;
+    font-size: 4em;
+    font-weight: bold;
+    color: $color-2;
+    opacity: 30%;
+    line-height: 0em;
+    vertical-align: -0.39em;
+    display: inline;
+  }
+  &:after{
+      content: close-quote;
+  }
+}
+
+@supports ( hanging-punctuation: first) {
+  blockquote {
+    text-indent: 0;
+    hanging-punctuation: first;
+  }
 }

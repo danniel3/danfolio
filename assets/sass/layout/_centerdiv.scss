@@ -8,12 +8,12 @@
 			width: 100%;
 	}
 
-	// Title & tags
+// Title & tags
 	.header {
 		padding-bottom: 1em;
 	}
 
-	// Result numbers
+// Results block
 	.results {
 		display: flex;
 		text-align: center;
@@ -25,35 +25,15 @@
 		}
 	}
 
-	// Start fixing from here
-	.quote {
+// Testimonial & Quote blocks
+	.quote-block {
 		margin: auto;
-		width: 80%;
+		width: 90%;
 		max-width: 30em;
-
-		.text {
-			text-indent: -2em;
-			margin-bottom: -0.5em;
-			display: inline;
-
-			strong.quote { // Quotation mark
-				font-family: $monofont;
-				font-size: 4em;
-				color: $color-2;
-				opacity: 30%;
-				line-height: 0em;
-				vertical-align: -0.39em;
-				display: inline;
-			}
-		}
-
-		.author {
-			font-family: $headfont;
-			color: $color-2 !important;
-			text-align: right;
-
-			&:before {
-				content: "— ";
+		.quote-single {
+			.text {
+				margin-bottom: -0.5em;
+				// display: inline;
 			}
 		}
 	}

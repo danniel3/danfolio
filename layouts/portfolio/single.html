@@ -63,13 +63,16 @@
 
 	<!-- Testimonial -->
 	{{ with ( index .Params.testimonial 0 "name" ) }}
-		<div class="quote">
+		<div class="quote-block">
 		{{ range $.Params.testimonial }}
+		<div class="quote-single">
 			<div class="text">
-				<strong class="quote">“</strong><p class="quote">{{.quote}}</p>
+				<blockquote class="quote">{{.quote}}</blockquote>
+				<!-- <strong class="quote">“</strong><p class="quote">{{.quote}}</p> -->
 			</div>
 			<div class="author">
-				<p class="quote author">{{ with .link }}<a href="https://{{ . }}">{{ end }}{{ .name | lower }}</a>, {{ .position | lower }} @ {{ .company | lower }}</p>
+				<p class="author">{{ with .link }}<a href="https://{{ . }}">{{ end }}{{ .name | lower }}</a>, {{ .position | lower }} @ {{ .company | lower }}</p>
+			</div>
 			</div>
 		{{ end }}
 		</div>

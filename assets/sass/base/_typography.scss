@@ -119,39 +119,21 @@ blockquote {
   }
 }
 
+// Lists
+
 ul {
   list-style: none; /* Remove default bullets */
-
-  &.main-menu {
-    padding: 0;
-	font-family: $headfont;
-	font-size: 1.7em;
-	border-left: 2px solid $color-3;
-
-	a {
-		text-decoration: none;
-	}
-    &:before {
-        display: none;
-    }
-
-    li {
-		list-style-type: none;
-		margin-left: 0.5em;
-    }
-  }
-
-  &:before {
-    content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
-    color: $color-2; /* Change the color */
-    font-weight: bold; /* If you want it to be bold */
-    display: inline-block; /* Needed to add space between the bullet and the text */
-    width: 1em; /* Also needed for space (tweak if needed) */
-    margin-left: -1em; /* Also needed for space (tweak if needed) */
-  }
 }
 
 li {
     font-family: $bodyfont;
-}
 
+	&:before {
+		content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+		color: $color-2; /* Change the color */
+		font-weight: bold; /* If you want it to be bold */
+		display: inline-block; /* Needed to add space between the bullet and the text */
+		width: 1em; /* Also needed for space (tweak if needed) */
+		margin-left: -1em; /* Also needed for space (tweak if needed) */
+	}
+}

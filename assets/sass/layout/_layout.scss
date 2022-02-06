@@ -61,9 +61,10 @@
 		}
 	}
 /* Clear floats after the columns */
-	&:after {
-		content: "";
-	  	display: table;
-	  	clear: both;
-	}
+	@extend %clearfix
+	// &:after {
+	// 	content: "";
+	//   	display: table;
+	//   	clear: both;
+	// }
 }

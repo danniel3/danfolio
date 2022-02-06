@@ -1,16 +1,36 @@
+// Complete collection of danfolio Sass
+
+// Sourcing fonts
+
 @import 'abstract/fonts';
+
+// Setting all variables for colors
 
 @import 'abstract/variables';
 
+@import 'abstract/mixins';
+
+// html, body, setting base font size with mq
+
 @import 'base/main';
+
+// Everything that goes within a typographic tag (p, h1, h2, ul, li, blockquote, etc.)
 
 @import 'base/typography';
 
+// General 3-col layout
+
 @import 'layout/layout';
+
+// Layout for the centerdiv
 
 @import 'layout/centerdiv';
 
+// Layout for the navigation
+
 @import 'layout/nav';
+
+// Gallery component
 
 @import 'components/gallery';
 

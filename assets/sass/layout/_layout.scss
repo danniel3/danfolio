@@ -1,8 +1,14 @@
 /* 3-column Layout */
 .div-body {
-		// margin: auto;
-		margin-left: calc( (100% - 1000px) / 2 - 350px );
+		margin: auto;
 		max-width: 1350px;
+
+		@include mq(large) {
+			margin-left: 0;
+		}
+		@include mq(xlarge) {
+			margin-left: calc( (100% - 1000px) / 2 - 350px );
+		}
 	* {
 		box-sizing: border-box;
 	}
@@ -12,70 +18,31 @@
 
 		&.div-left {
 			float: left;
-			//background-color: red;
-			// width: 20%;
+			display: none;
 
-			@media screen and (max-width: 999px){
-				display: none;
-			}
-
-			@media screen and (min-width: 1000px){
-				// display: auto;
-				// width: 40%;
+			@include mq(med) {
+				display: inline;
 				min-width: 350px;
-			}
-
-			@media screen and (min-width: 1365px){
 				position: fixed;
-				width: 20%;
 			}
-
-			// @media screen and (max-width: 400px) {
-			// 	display: none;
-			// }
-
 		}
 
 		&.div-right {
-			// background-color: pink;
 			display: none;
-			// width: 20%;
-
-			// @media screen and (max-width: 1365px){
-			// 	display: none;
-			// }
-
-			// @media screen and (min-width: 1365px){
-			// 	width: 20%;
-			// }
-			// @media screen and (max-width: 135rem) {
-
 		}
 		&.div-center {
-			//background-color: blue;
 			max-width: 1000px;
 			margin: auto;
 
-			@media screen and (min-width: 1000px) {
+			@include mq(med) {
 				width: calc(100% - 350px);
 			}
 
-			@media screen and (min-width: 1365px) {
-				width: auto;
+			@include mq(large) {
 			}
-
-			// @media screen and (min-width: 1365px) {
-			// 	width: 65%;
-			// }
-
-			//max-width: 680px;
 		}
 	}
-/* Clear floats after the columns */
+
+	// Clear flex columns
 	@extend %clearfix
-	// &:after {
-	// 	content: "";
-	//   	display: table;
-	//   	clear: both;
-	// }
 }

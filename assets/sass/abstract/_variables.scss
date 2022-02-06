@@ -12,10 +12,11 @@
 // - (max-width: 767px) 				- top menu burger + stretchy center
 
 $breakpoints: (
-  small : 480px,
-  med: 700px,    // top menu appears, menu burger disappears
-  large : 1020px, // div-center stops expanding
-  xlarge: 1350px, // top menu disappears, div-left appears, div-center centered
+  xsmall : 480px,
+  small: 700px,    // top menu appears, menu burger disappears
+  med : 1020px, // div-center stops expanding
+  large: 1365px, // top menu disappears, div-left appears, both centered together
+  xlarge: 1700px, // div-center centered
 );
 
 // Colors

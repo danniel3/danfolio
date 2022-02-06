@@ -8,6 +8,10 @@ nav.navbar {
 	border-left: 2px solid $color-3;
 	padding-left: 1em;
 
+	@include mq(med) {
+		margin: auto 0 auto 3em;
+	}
+
 	div.hamburger-container {
 		display: -webkit-flex; /* Safari */
 		display: flex;
@@ -23,8 +27,12 @@ nav.navbar {
 	}
 
 	svg.hamburger {
-			fill: $color-4;
+		fill: $color-4;
+
+		&:hover {
+			fill: $color-2
 		}
+	}
 
 	ul {
 
@@ -43,6 +51,7 @@ nav.navbar {
 			// margin-top: auto;
 
 			@include mq(med) {
+				margin: revert;
 				// border-left: 2px solid $color-3;
 				// display: block;
 			}

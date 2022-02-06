@@ -13,9 +13,9 @@
 
 $breakpoints: (
   small : 480px,
-  medium: 700px,
-  large : 1024px,
-  xlarge: 1440px,
+  med: 700px,    // top menu appears, menu burger disappears
+  large : 1020px, // div-center stops expanding
+  xlarge: 1350px, // top menu disappears, div-left appears, div-center centered
 );
 
 // Colors

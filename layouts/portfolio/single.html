@@ -115,6 +115,7 @@
 	{{ end }}
 
 	<!-- Images -->
+		<div class="gallery">
     {{- $images := .Page.Resources.ByType "image" -}}
 	{{ $headername := printf "%s%s" ( lower .Title ) ".png" }}
     	{{ range where $images "Name" "not in" $headername }}
@@ -124,8 +125,8 @@
 			{{ $large := (.Resize "800x webp") }}
 			{{ $xlarge := (.Resize "1000x webp") }}
 
-		<div class="responsive">
-    <div class="gallery">
+	<div class="responsive">
+		<div class="gallery-image">
 			<a href="{{ .Permalink | absURL }}">
 				<img src="{{ $tiny.Permalink | absURL }}"
 
@@ -148,10 +149,11 @@
 			<!-- Standard display sizes: 1920, 1600, 1366 (common), 1024, 768, 640 -->
 			<!-- As this box will never be more than 1000px (100 rem x 10px), the largest needed is 1000 -->
 
-    </div>
+		</div>
 	</div>
 	{{ end }}
-	<div class="clearfix"></div>
+	</div>
+	<!-- <div class="clearfix"></div> -->
 
 
 	<!-- Services -->

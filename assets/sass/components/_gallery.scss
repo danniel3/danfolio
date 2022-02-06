@@ -1,46 +1,44 @@
-div.gallery {
-  border: 1px solid #ccc;
-}
+div {
+  .gallery {
+    @extend %clearfix;
 
-div.gallery:hover {
-  border: 1px solid #777;
-}
+    .responsive {
+      padding: 0 6px;
+      float: left;
+      width: 24.99999%;
+    }
 
-div.gallery img {
-  width: 100%;
-  height: auto;
-}
+    // Need to fix these to match my mq mixins
+    @media only screen and (max-width: 700px) {
+      .responsive {
+        width: 49.99999%;
+        margin: 6px 0;
+      }
+    }
 
-div.desc {
-  padding: 15px;
-  text-align: center;
-}
+    @media only screen and (max-width: 500px) {
+      .responsive {
+        width: 100%;
+      }
+    }
 
-* {
-  box-sizing: border-box;
-}
+    &-image {
+      border: 1px solid #ccc;
 
-.responsive {
-  padding: 0 6px;
-  float: left;
-  width: 24.99999%;
-}
+      &:hover {
+        border: 1px solid #777;
+      }
 
-@media only screen and (max-width: 700px) {
-  .responsive {
-    width: 49.99999%;
-    margin: 6px 0;
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  .desc {
+    padding: 15px;
+    text-align: center;
   }
 }
 
-@media only screen and (max-width: 500px) {
-  .responsive {
-    width: 100%;
-  }
-}
-
-.clearfix:after {
-  content: "";
-  display: table;
-  clear: both;
-}

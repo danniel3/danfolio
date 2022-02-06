@@ -1,4 +1,4 @@
-/* 3-column Layout */
+/* 3-column Responsive Layout */
 .div-body {
 		margin: auto;
 		max-width: 1350px;
@@ -9,36 +9,49 @@
 		@include mq(xlarge) {
 			margin-left: calc( (100% - 1000px) / 2 - 350px );
 		}
+
 	* {
 		box-sizing: border-box;
 	}
+
 	.column {
 		float: right;
 		padding: 10px;
 
 		&.div-left {
 			float: left;
-			display: none;
+			position: fixed;
+			display: flex;
+			background: $color-bg;
+			border-bottom: 2px solid $color-2;
+			width: 100%;
+			margin: 0;
 
 			@include mq(med) {
+				// display: inline;
 				display: inline;
-				min-width: 350px;
-				position: fixed;
+				background: none;
+				border-bottom: none;
+				width: 350px;
+				// position: fixed;
 			}
 		}
 
 		&.div-right {
 			display: none;
 		}
-		&.div-center {
-			max-width: 1000px;
-			margin: auto;
 
-			@include mq(med) {
-				width: calc(100% - 350px);
+		&.div-center {
+			width: 100%;
+			max-width: 1000px;
+			margin-top: 9rem;
+
+			@include mq(xsmall) {
 			}
 
-			@include mq(large) {
+			@include mq(med) {
+				margin-top: 0px;
+				width: calc(100% - 350px);
 			}
 		}
 	}

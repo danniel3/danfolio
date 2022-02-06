@@ -1,13 +1,17 @@
 /* 3-column Layout */
 .div-body {
+		// margin: auto;
+		margin-left: calc( (100% - 1000px) / 2 - 350px );
+		max-width: 1350px;
 	* {
 		box-sizing: border-box;
 	}
 	.column {
-		float: left;
+		float: right;
 		padding: 10px;
 
 		&.div-left {
+			float: left;
 			//background-color: red;
 			// width: 20%;
 
@@ -16,12 +20,13 @@
 			}
 
 			@media screen and (min-width: 1000px){
-				display: auto;
+				// display: auto;
 				// width: 40%;
 				min-width: 350px;
 			}
 
 			@media screen and (min-width: 1365px){
+				position: fixed;
 				width: 20%;
 			}
 
@@ -32,25 +37,31 @@
 		}
 
 		&.div-right {
-			background-color: pink;
+			// background-color: pink;
+			display: none;
 			// width: 20%;
 
-			@media screen and (max-width: 1366px){
-				display: none;
-			}
+			// @media screen and (max-width: 1365px){
+			// 	display: none;
+			// }
 
-			@media screen and (min-width: 1366px){
-				width: 20%;
-			}
+			// @media screen and (min-width: 1365px){
+			// 	width: 20%;
+			// }
 			// @media screen and (max-width: 135rem) {
 
 		}
 		&.div-center {
 			//background-color: blue;
 			max-width: 1000px;
+			margin: auto;
 
 			@media screen and (min-width: 1000px) {
 				width: calc(100% - 350px);
+			}
+
+			@media screen and (min-width: 1365px) {
+				width: auto;
 			}
 
 			// @media screen and (min-width: 1365px) {

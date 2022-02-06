@@ -5,12 +5,12 @@
     </head>
     <body>
 	<div class="div-body">
-		<div class="column div-left">
-        		{{- partial "navigation.html" . -}}
-		</div>
 		<div class="column div-center">
 		        {{- block "main" . }}{{- end }}
 		        {{- partial "center-footer.html" . -}}
+		</div>
+		<div class="column div-left">
+        		{{- partial "navigation.html" . -}}
 		</div>
 		<div class="column div-right">
 		</div>

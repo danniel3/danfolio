@@ -4,8 +4,9 @@
 	</div>
 
     <nav class="navbar">
-        <ul class="main-menu">
-
+    <input id="main-menu-mobile__toggle" type="checkbox" />
+    <label class="main-menu-mobile__btn" for="main-menu-mobile__toggle">
+        <!-- <span> -->
             <div class="hamburger-container">
                 <svg class="hamburger" viewBox="0 0 100 80" width="40" height="30">
                     <rect width="100" height="20" rx="10"></rect>
@@ -13,11 +14,15 @@
                     <rect y="60" width="100" height="20" rx="10"></rect>
                 </svg>
             </div>
+        <!-- </span> -->
+    </label>
 
+        <ul class="main-menu">
             {{ $currentPage := . }}
             {{/* {{ range .Site.Menus.navigation.ByWeight }} */}}
             {{ range .Site.Menus.main }}
             <li>
+                <!-- <a class="{{if or ($currentPage.IsMenuCurrent "navigation" .) ($currentPage.HasMenuCurrent "navigation" .) }}menu-active{{ end }}" href="{{ absURL .URL }}"> -->
                 <a class="{{if or ($currentPage.IsMenuCurrent "navigation" .) ($currentPage.HasMenuCurrent "navigation" .) }}menu-active{{ end }}" href="{{ absURL .URL }}">
                     {{ .Title | lower }}
                 </a>

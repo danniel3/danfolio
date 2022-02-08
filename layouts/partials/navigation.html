@@ -5,18 +5,16 @@
 
     <nav class="navbar">
         <!-- <span> -->
-    <input id="main-menu-mobile__toggle" class="main-menu-mobile__toggle" type="checkbox" />
+            <input id="main-menu-mobile__toggle" class="main-menu-mobile__toggle" type="checkbox" />
             <div class="hamburger-container">
-    <label class="main-menu-mobile__btn" for="main-menu-mobile__toggle">
-                <svg class="hamburger" viewBox="0 0 100 80" width="40" height="30">
-                    <rect class="hamburger1" width="100" height="20" rx="10"></rect>
-                    <rect class="hamburger2" y="30" width="100" height="20" rx="10"></rect>
-                    <rect class="hamburger3" y="60" width="100" height="20" rx="10"></rect>
-                </svg>
-    </label>
+                <label class="hamburger" for="main-menu-mobile__toggle">
+                    <div class="top-bun"></div>
+                    <div class="meat"></div>
+                    <div class="bottom-bun"></div>
+                </label>
             </div>
-        <!-- </span> -->
-    <label class="main-menu-mobile__overlay" for="main-menu-mobile__toggle"></label>
+            <!-- </span> -->
+        <label class="main-menu-mobile__overlay" for="main-menu-mobile__toggle"></label>
 
         <ul class="main-menu">
             {{ $currentPage := . }}
@@ -24,9 +22,9 @@
             {{ range .Site.Menus.main }}
             <li>
                 <!-- <a class="{{if or ($currentPage.IsMenuCurrent "navigation" .) ($currentPage.HasMenuCurrent "navigation" .) }}menu-active{{ end }}" href="{{ absURL .URL }}"> -->
-                <a class="{{if or ($currentPage.IsMenuCurrent "navigation" .) ($currentPage.HasMenuCurrent "navigation" .) }}menu-active{{ end }}" href="{{ absURL .URL }}">
-                    {{ .Title | lower }}
-                </a>
+                    <a class="{{if or ($currentPage.IsMenuCurrent "navigation" .) ($currentPage.HasMenuCurrent "navigation" .) }}menu-active{{ end }}" href="{{ absURL .URL }}">
+                        {{ .Title | lower }}
+                    </a>
             </li>
             {{ end }}
         </ul>

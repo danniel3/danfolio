@@ -13,12 +13,8 @@ nav.navbar {
 	}
 
 	div.hamburger-container {
-		display: -webkit-flex; /* Safari */
-		display: flex;
-		-webkit-align-items: center;
-		align-items: center;
-		-webkit-justify-content: center;
-		justify-content: center;
+		@include flex
+		@include align-items(center);
 
 		@include mq(small) {
 			display: none;
@@ -31,7 +27,6 @@ nav.navbar {
 		&.main-menu {
 			font-family: $headfont;
 			font-size: 1.7em;
-
 			display: block;
 			position: fixed;
 			top: 0;
@@ -43,18 +38,8 @@ nav.navbar {
 			padding: 80px 0;
 			list-style: none;
 			background-color: $color-bg;
-			box-shadow: -2px 2px 6px $color-3;
-			transition-duration: .25s;
-			// transform: translate(-0%);
-
-			// display: none;
-
-			// @include mq(small) {
-			// 	display: inline;
-			// }
-			// margin: auto 0 auto 0;
-			// display: inline;
-			// margin-top: auto;
+			@include box-shadow(-2px 2px 6px $color-3);
+			@include transition-duration(.25s);
 
 			@include mq(small) {
 				display: revert;
@@ -68,19 +53,14 @@ nav.navbar {
 				padding: 0;
 				list-style: auto;
 				background-color: $color-bg;
-				box-shadow: none;
-				// transition-duration: .25s;
+				@include box-shadow(none);
 			}
 
 			@include mq(med) {
 				margin: revert;
-				// border-left: 2px solid $color-3;
-				// display: block;
 			}
 			a {
 				text-decoration: none;
-
-
 			}
 			&:before {
 				display: none;
@@ -90,7 +70,6 @@ nav.navbar {
 				display: block;
 				padding: 12px 24px;
 				text-decoration: none;
-				transition-duration: .25s;
 				font-family: $headfont;
 
 				@include mq(small) {
@@ -124,11 +103,11 @@ nav.navbar {
 			div {
 				width: 4em;
 				height: 7px;
-				border-radius: 3px;
+				@include border-radius(3px);
 				background-color: $color-4;
 				cursor: pointer;
 				margin-top: 8px;
-				transition: all 0.3s ease-in-out;
+				@include transition(all 0.3s ease-in-out);
 			}
 
 			.top-bun {
@@ -143,15 +122,15 @@ nav.navbar {
 			&:checked {
 				+ .hamburger-container .hamburger {
 					.top-bun {
-						transform: rotate(-45deg);
+						@include transform(rotate(-45deg));
 						margin-top: 17px;
 					}
 					.bottom-bun {
 						opacity: 0;
-						transform: rotate(45deg);
+						@include transform(rotate(45deg));
 					}
 					.meat {
-						transform: rotate(45deg);
+						@include transform(rotate(45deg));
 						margin-top: -6px;
 					}
 				}
@@ -175,13 +154,8 @@ nav.navbar {
 			height: 150vw;
 			z-index: 0;
 			cursor: pointer;
-			// transition: opacity 3s ease-in-out;
 			display: none;
-			-webkit-animation: fadein 1s; /* Safari and Chrome */
-			-moz-animation: fadein 1s; /* Firefox */
-			-ms-animation: fadein 1s; /* Internet Explorer */
-			-o-animation: fadein 1s; /* Opera */
-			animation: fadein 1s;
+			@include animation(fadein, 1s, null , null);
 		}
 	}
 }

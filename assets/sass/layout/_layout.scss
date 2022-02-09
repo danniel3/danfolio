@@ -11,7 +11,7 @@
 		}
 
 	* {
-		box-sizing: border-box;
+		@include box-sizing(border-box);
 	}
 
 	.column {
@@ -21,7 +21,7 @@
 		&.div-left {
 			float: left;
 			position: fixed;
-			display: flex;
+			@include flex;
 			background: $color-bg;
 			border-bottom: 2px solid $color-2;
 			width: 100%;

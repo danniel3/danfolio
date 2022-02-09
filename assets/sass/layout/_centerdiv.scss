@@ -7,14 +7,6 @@
 		width: 100%;
 	}
 
-	// .gallery {
-	// 	display: flex;
-	// 	img {
-	// 		// .header {
-	// 		width: 100%;
-	// 	}
-	// }
-
 // Title & tags
 	.header {
 		margin-bottom: 1em;
@@ -22,7 +14,7 @@
 
 // Results block
 	.results {
-		display: flex;
+		@include flex;
 		justify-content: center;
   		//width: 600px;
   		//margin: 0 auto;

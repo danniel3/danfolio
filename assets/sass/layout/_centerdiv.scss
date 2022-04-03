@@ -15,11 +15,11 @@
 // Results block
 	.results {
 		@include flex;
+		flex-wrap: wrap;
 		justify-content: center;
-  		//width: 600px;
-  		//margin: 0 auto;
+
 		.instance {
-			margin: 3em;
+			margin: 0 3rem 0 3rem;
 		}
 	}
 

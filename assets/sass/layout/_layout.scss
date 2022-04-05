@@ -2,6 +2,14 @@
 .div-body {
 		margin: auto;
 		max-width: 1000px;
+		@include flex;
+
+		align-items: flex-start;
+		flex-flow: column;
+
+		@include mq(med) {
+			flex-flow: row;
+		}
 
 		// @include mq(large) {
 		// 	margin-left: 0;
@@ -16,27 +24,31 @@
 
 	.column {
 		padding: 10px;
-		float: left;
+		// float: left;
 
 		@include mq(med) {
-			float: right;
+			// float: right;
 		}
 
 		&.div-left {
-			float: left;
-			position: fixed;
+			// float: left;
+			// position: fixed;
 			@include flex;
 			background: $color-bg;
 			border-bottom: 2px solid $color-2;
 			width: 100%;
 			margin: 0;
 
+			order: -1;
+			position: sticky;
+			top: 0;
+
 			@include mq(med) {
 				// display: inline;
-				display: inline;
 				background: none;
 				border-bottom: none;
 				width: 350px;
+				flex-flow: column;
 				// position: fixed;
 			}
 		}
@@ -48,7 +60,7 @@
 		&.div-center {
 			width: 100%;
 			max-width: 650px;
-			margin-top: 7rem;
+			// margin-top: 7rem;
 
 			@include mq(xsmall) {
 			}

@@ -1,7 +1,7 @@
 /* 3-column Responsive Layout */
 .div-body {
 		margin: auto;
-		max-width: 1000px;
+		max-width: 130rem;
 		@include flex;
 
 		align-items: flex-start;
@@ -11,9 +11,6 @@
 			flex-flow: row;
 		}
 
-		// @include mq(large) {
-		// 	margin-left: 0;
-		// }
 		// @include mq(xlarge) {
 		// 	margin-left: calc( (100% - 1000px) / 2 - 350px );
 		// }
@@ -23,16 +20,16 @@
 	}
 
 	.column {
-		padding: 10px;
-		// float: left;
+		padding: 1rem;
+		width: 100%;
 
 		@include mq(med) {
-			// float: right;
+			padding: 4rem 2rem 0 2rem;
+			margin-top: 0;
+			width: calc(100% - 33rem);
 		}
 
-		&.div-left {
-			// float: left;
-			// position: fixed;
+		&.header {
 			@include flex;
 			background: $color-bg;
 			border-bottom: 2px solid $color-2;
@@ -44,12 +41,11 @@
 			top: 0;
 
 			@include mq(med) {
-				// display: inline;
 				background: none;
 				border-bottom: none;
-				width: 350px;
+				width: 33rem;
 				flex-flow: column;
-				// position: fixed;
+				text-align: right;
 			}
 		}
 
@@ -57,19 +53,6 @@
 			display: none;
 		}
 
-		&.div-center {
-			width: 100%;
-			max-width: 650px;
-			// margin-top: 7rem;
-
-			@include mq(xsmall) {
-			}
-
-			@include mq(med) {
-				margin-top: 0px;
-				width: calc(100% - 350px);
-			}
-		}
 	}
 
 	// Clear flex columns

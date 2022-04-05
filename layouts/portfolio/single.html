@@ -1,7 +1,7 @@
 {{- define "main" }}
-<div class="div-content">
+<article class="div-content">
 
-	<div class="header">
+	<header class="header wide">
 		<h1>{{ .Title | upper }}</h1>
 
 		<div class="tags">
@@ -16,16 +16,14 @@
 			{{ end }}
 		</div>
 
-	</div>
-
-	<!-- Header Image -->
- 	{{- $img := ( printf "%s.png" ( lower .Title ) ) -}}
-    	{{- $original := .Resources.GetMatch $img -}}
-    	{{ with .Resources.GetMatch $img }}
+		<!-- Header Image -->
+ 		{{- $img := ( printf "%s.png" ( lower .Title ) ) -}}
+		{{- $original := .Resources.GetMatch $img -}}
+		{{ with .Resources.GetMatch $img }}
         	<div class="header image">
-			{{ $tiny := (.Fill "480x140 webp center") }}
-			{{ $medium := (.Fill "700x200 webp center") }}
-			{{ $large := (.Fill "1000x300 webp center") }}
+				{{ $tiny := (.Fill "480x140 webp center") }}
+				{{ $medium := (.Fill "700x200 webp center") }}
+				{{ $large := (.Fill "1000x300 webp center") }}
 
 				<img src="{{ $tiny.Permalink | absURL }}"
 
@@ -38,13 +36,14 @@
 					       480px"
 
 					alt="Image about {{ $.Params.Title }} Copywriting by Danniel Roumian Booker">
-         </div>
-    {{ end }}
+			</div>
+		{{ end }}
 
+	</header>
 
 	<!-- Numbers -->
 	{{ with .Params.results }}
-		<div class="results">
+		<section class="results narrow">
 			{{ range $k, $v := . }}
 			{{ if gt $v 0 }}
 			<div class="instance">
@@ -58,12 +57,12 @@
 			</div>
 			{{ end }}
 			{{ end }}
-		</div>
+		</section>
 	{{ end }}
 
 	<!-- Testimonial -->
 	{{ with ( index .Params.testimonial 0 "name" ) }}
-		<div class="quote-block">
+		<section class="quote-block narrow">
 		{{ range $.Params.testimonial }}
 			<div class="quote-single">
 				<div class="text">
@@ -74,120 +73,128 @@
 				</div>
 			</div>
 		{{ end }}
-		</div>
+		</section>
 	{{ end }}
 
 	<!-- Highlights -->
-	{{ .Content }}
-	{{ with .Params.highlights.brief }}
+	<section class="narrow">
+		{{ .Content }}
+		{{ with .Params.highlights.brief }}
 		<h2>brief</h2>
 		<p>{{ . }}</p>
-	{{ end }}
+		{{ end }}
 
-	<!-- Solutions -->
-	{{ with .Params.highlights.solution }}
+		<!-- Solutions -->
+		{{ with .Params.highlights.solution }}
 		<h2>solutions</h2>
 		<p>{{ . }}</p>
-	{{ end }}
+		{{ end }}
 
-	<!-- Results -->
-	{{ with .Params.highlights.results }}
+		<!-- Results -->
+		{{ with .Params.highlights.results }}
 		<h2>results</h2>
 		<p>{{ . }}</p>
-	{{ end }}
+		{{ end }}
 
-	<!-- Media Mentions -->
-	{{ with ( index .Params.featured 0 "media" ) }}
+		<!-- Media Mentions -->
+		{{ with ( index .Params.featured 0 "media" ) }}
 		<div class="quote-block">
 			{{ range $.Params.featured }}
-				<div class="quote-single">
-					<div class="text">
-						<blockquote class="quote">{{.quote}}</blockquote>
-					</div>
-					<div class="author">
-						<p class="author">{{ .media }}</p>
-						{{/* {{ with .link }}<a href="{{ . }}">{{ end }}{{ .media }}</a> */}}
-						{{/* <a href="{{ "/media/" | relLangURL }}{{ .media | urlize }}">See more coverage by {{ .media }}</a> */}}
-					</div>
+			<div class="quote-single">
+				<div class="text">
+					<blockquote class="quote">{{.quote}}</blockquote>
 				</div>
+				<div class="author">
+					<p class="author">{{ .media }}</p>
+					{{/* {{ with .link }}<a href="{{ . }}">{{ end }}{{ .media }}</a> */}}
+					{{/* <a href="{{ "/media/" | relLangURL }}{{ .media | urlize }}">See more coverage by {{ .media }}</a> */}}
+				</div>
+			</div>
 			{{ end }}
 		</div>
-	{{ end }}
+		{{ end }}
+	</section>
 
 	<!-- Images -->
-		<div class="gallery">
-    {{- $images := .Page.Resources.ByType "image" -}}
-	{{ $headername := printf "%s%s" ( lower .Title ) ".png" }}
+	<section class="gallery narrow">
+		{{- $images := .Page.Resources.ByType "image" -}}
+		{{ $headername := printf "%s%s" ( lower .Title ) ".png" }}
     	{{ range where $images "Name" "not in" $headername }}
-			{{ $tiny := (.Resize "300x webp") }}
-			{{ $small := (.Resize "400x webp") }}
-			{{ $medium := (.Resize "600x webp") }}
-			{{ $large := (.Resize "800x webp") }}
-			{{ $xlarge := (.Resize "1000x webp") }}
+		{{ $tiny := (.Resize "300x webp") }}
+		{{ $small := (.Resize "400x webp") }}
+		{{ $medium := (.Resize "600x webp") }}
+		{{ $large := (.Resize "800x webp") }}
+		{{ $xlarge := (.Resize "1000x webp") }}
 
-	<div class="responsive">
-		<div class="gallery-image">
-			<a href="{{ .Permalink | absURL }}">
-				<img src="{{ $tiny.Permalink | absURL }}"
+		<div class="responsive">
+			<div class="gallery-image">
+				<a href="{{ .Permalink | absURL }}">
+					<img src="{{ $tiny.Permalink | absURL }}"
 
-					srcset="{{ $tiny.Permalink | absURL }} 300w,
-						{{ $small.Permalink | absURL }} 400w,
-						{{ $medium.Permalink | absURL }} 600w,
-						{{ $large.Permalink | absURL }} 800w,
-						{{ $xlarge.Permalink | absURL }} 1000w"
+						 srcset="{{ $tiny.Permalink | absURL }} 300w,
+								 {{ $small.Permalink | absURL }} 400w,
+								 {{ $medium.Permalink | absURL }} 600w,
+								 {{ $large.Permalink | absURL }} 800w,
+								 {{ $xlarge.Permalink | absURL }} 1000w"
 
-					sizes="(min-width: 640px) 40vw,
-					       (min-width: 768px) 40vw,
-					       (min-width: 1024px) 40vw,
-					       (min-width: 1366px) 40vw,
-					       (min-width: 1600px) 40vw,
-					       (min-width: 1920px) 1000px"
+						 sizes="(min-width: 640px) 40vw,
+								(min-width: 768px) 40vw,
+								(min-width: 1024px) 40vw,
+								(min-width: 1366px) 40vw,
+								(min-width: 1600px) 40vw,
+								(min-width: 1920px) 1000px"
 
-					alt="Image of {{ $.Params.Title }} | Copywriting by Danniel Roumian Booker" class="single">
-			</a>
+						 alt="Image of {{ $.Params.Title }} | Copywriting by Danniel Roumian Booker" class="single">
+				</a>
 
-			<!-- Standard display sizes: 1920, 1600, 1366 (common), 1024, 768, 640 -->
-			<!-- As this box will never be more than 1000px (100 rem x 10px), the largest needed is 1000 -->
+				<!-- Standard display sizes: 1920, 1600, 1366 (common), 1024, 768, 640 -->
+				<!-- As this box will never be more than 1000px (100 rem x 10px), the largest needed is 1000 -->
 
+			</div>
 		</div>
-	</div>
-	{{ end }}
-	</div>
+		{{ end }}
+	</section>
 	<!-- <div class="clearfix"></div> -->
 
 
 	<!-- Services -->
-	{{ with .Params.highlights.services }}
+	<section class="narrow">
+		{{ with .Params.highlights.services }}
 		<h2>Services</h2>
 		<ul id="tags">
 			{{ range $.Params.highlights.services }}
 			<li><a href="{{ "/services/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> </li>
 			{{ end }}
 		</ul>
-	{{ end }}
+		{{ end }}
+	</section>
 
 	<!-- Team -->
-	{{ with or .Params.team.agency .Params.team.people }}
+	<section class="narrow">
+		{{ with or .Params.team.agency .Params.team.people }}
 		<h2>Team</h2>
 		<ul>
 			{{ with $.Params.team.agency }}
-				<li>Agency: {{ with $.Params.agency.link }}<a href="{{ . }}">{{ end }}{{ . }}</a></li>
+			<li>Agency: {{ with $.Params.agency.link }}<a href="{{ . }}">{{ end }}{{ . }}</a></li>
 			{{ end }}
 			{{ with ( index $.Params.team.people 0 "name" ) }}
-				{{ range $.Params.team.people }}
-					<li>{{.position}}: {{ with .link }}<a href="{{ . }}">{{ end }}{{.name}}</a></li>
-				{{ end }}
+			{{ range $.Params.team.people }}
+			<li>{{.position}}: {{ with .link }}<a href="{{ . }}">{{ end }}{{.name}}</a></li>
+			{{ end }}
 			{{ end }}
 		</ul>
-	{{ end }}
+		{{ end }}
+	</section>
 
 	<!-- Client -->
-	{{ with .Params.client.name }}
+	<section class="narrow">
+		{{ with .Params.client.name }}
 		<h2>Partner: {{ with $.Params.client.link }}<a href="{{ . }}">{{ end }}{{ . }}</a></h2>
 		{{ with $.Params.client.about }}
-			<p>{{ . }}</p>
+		<p>{{ . }}</p>
 		{{ end }}
-	{{ end }}
+		{{ end }}
+	</section>
 	<!-- {{ .Content }} -->
-</div>
+</article>
 {{ end }}

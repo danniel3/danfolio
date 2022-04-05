@@ -2,6 +2,15 @@
 
 .div-content {
 
+	.wide {
+		width: 100%;
+	}
+
+	.narrow {
+		max-width: 65rem;
+		margin: auto;
+	}
+
 	img {
 		// .header {
 		width: 100%;
@@ -9,8 +18,13 @@
 
 // Title & tags
 	.header {
-		margin-bottom: 1rem;
+		margin: 0 0 5rem 0;
+
+		>.tags {
+			margin: 0 0 2rem 0;
+		}
 	}
+
 
 // Results block
 	.results {
@@ -27,7 +41,7 @@
 	.quote-block {
 		margin: auto;
 		width: 90%;
-		max-width: 30em;
+		max-width: 35em;
 		.quote-single {
 			.text {
 				margin-bottom: -0.5em;

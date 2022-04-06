@@ -12,6 +12,96 @@
 
 {{/* <!-- Above is for regular css in the assets/css folder, below is for scss in the sass folder --> */}}
 
+<!-- SEO stuff -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="canonical" href="{{ .Permalink }}" />
+<meta name="canonical" content="{{ .Permalink }}">
+{{ with .OutputFormats.Get "RSS" }}<link href="{{ .RelPermalink }}" rel="alternate" type="application/rss+xml" />{{ end }}
+
+{{ if ne hugo.Environment "production" }}<meta name="robots" content="noindex,nofollow">{{ else }}<meta name="robots" content="index,follow">{{ end }}
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="{{ .Site.Title }}">
+<meta property="og:published_time" content="{{ .PublishDate }}">
+
+
+{{ if .Site.Params.TwitterCardType }}
+    <meta name="twitter:card" content="{{ .Site.Params.TwitterCardType }}" />
+{{ else }}
+    <meta name="twitter:card" content="summary_large_image" />
+{{ end }}
+
+{{ if .Site.Params.TwitterUsername }}
+    <meta name="twitter:site" content="{{ .Site.Params.TwitterUsername }}" />
+{{ end }}
+
+{{ if .IsHome }}
+  <title>{{ default .Site.Title .Title }}</title>
+  <meta name="description" content="{{ default $.Site.Params.description .Description }}" />
+  <meta property="og:image" content="{{ .Site.BaseURL}}{{ .Site.Params.SocialImage }}" />
+  <meta property="og:url" content="{{ .Site.BaseURL }}" />
+  <meta property="og:title" content="{{ default .Site.Title .Title }}" />
+  <meta name="og:description" content="{{ $.Site.Params.description }}" />
+  <meta name="twitter:title" content="{{ default .Site.Title .Title }}" />
+  <meta name="twitter:description" content="{{ $.Site.Params.description }}" />
+  <meta name="twitter:url" content="{{ .Site.BaseURL }}" />
+  <meta name="twitter:image" content="{{ .Site.BaseURL}}{{ .Site.Params.SocialImage }}" />
+{{ else }}
+  <title>{{ .Title }} &middot; {{ .Site.Title }}</title>
+
+  <meta property="og:url" content="{{ .Permalink }}" />
+  <meta property="og:title" content="{{ .Title }} &middot; {{ .Site.Title }}" />
+  <meta name="twitter:title" content="{{ .Title }} &middot; {{ .Site.Title }}" />
+
+  {{ if .Description }}
+    <meta name="description" content="{{ .Description }}" />
+    <meta name="og:description" content="{{ .Description }}" />
+    <meta name="twitter:description" content="{{ .Description }}" />
+  {{ else }}
+    <meta name="description" content="{{ $.Site.Params.description }}" />
+    <meta name="og:description" content="{{ $.Site.Params.description }}" />
+    <meta name="twitter:description" content="{{ $.Site.Params.description }}" />
+  {{ end }}
+
+  <meta name="twitter:url" content="{{ .Permalink }}" />
+
+  {{ if .Params.SocialImage }}
+    <meta name="twitter:image" content="{{ .Site.BaseURL }}{{ .Params.SocialImage }}" />
+  {{ else }}
+    <meta name="twitter:image" content="{{ .Site.BaseURL }}{{ .Site.Params.SocialImage }}" />
+  {{ end }}
+
+{{ end }}
+
+{{ if .Params.tags }}
+  <meta name="keywords" content="{{ range .Params.tags }}{{ . }},{{ end }}" />
+{{ else if .Keywords }}
+  <meta name="keywords" content="{{ range .Keywords }}{{ . }},{{ end }}" />
+{{ else }}
+  <meta name="keywords" content="{{ $.Site.Params.Keywords }}" />
+{{ end }}
+
+
+<!-- Schema stuff -->
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org/",
+        "@type": "WebSite",
+        "name": "{{ default .Site.Title .Title }}",
+        "image": "{{ .Site.BaseURL}}{{ default .Site.Params.SocialImage .Params.SocialImage }}",
+    {{ if .Description -}}
+        "about": "{{ .Description }}"
+    {{ else -}}
+        "about": "{{ $.Site.Params.description }}"
+    {{ end -}}
+    }
+</script>
+
+
+<!-- CSS/SaSS stuff -->
 {{ $options := (dict "targetPath" "style.css" "outputStyle" "compressed" "enableSourceMap" true ) }}
 {{ $sass := resources.Get "sass/main.scss" }}
 {{ $style := $sass | resources.ToCSS $options }}

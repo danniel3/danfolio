@@ -58,20 +58,20 @@
   {{ end }}
 
 
-  {{ with .Params.social.socialimage }}
-
-
-		<!-- Header Image -->
- 		{{- $img := ( printf "%s-social.png" ( lower $.Title ) ) -}}
-		{{- $original := $.Resources.GetMatch $img -}}
-		{{ with $.Resources.GetMatch $img }}
-				{{ $social := (.Fill "1200x630 jpeg center") }}
-    <meta name="twitter:image" content="{{ $social.Permalink | absURL }}">
-    <meta property="og:image" content="{{ $social.Permalink | absURL }}">
+    <!-- Social Image -->
+    {{ with .Params.social.socialimage }}
+        {{- $img := ( printf "%s-social.png" ( lower $.Title ) ) -}}
+        {{- $original := $.Resources.GetMatch $img -}}
+        {{ with $.Resources.GetMatch $img }}
+            {{ $socialfb := (.Fill "1200x630 jpeg center") }}
+            {{ $.Scratch.Add "socialimage" ( $socialfb.Permalink | absURL ) }}
+            <!-- {{ $socialtwitter := (.Fill "1200x630 webp center") }} -->
+            <meta name="twitter:image" content="{{ $socialfb.Permalink | absURL }}">
+            <meta property="og:image" content="{{ $socialfb.Permalink | absURL }}">
+        {{ end }}
+    {{ else }}
+        <meta name="twitter:image" content="{{ .Site.BaseURL }}{{ .Site.Params.socialimage }}">
     {{ end }}
-  {{ else }}
-    <meta name="twitter:image" content="{{ .Site.BaseURL }}{{ .Site.Params.socialimage }}">
-  {{ end }}
 
 {{ end }}
 
@@ -93,6 +93,7 @@
     <meta name="twitter:site" content="{{ .Site.Params.twitteruser }}">
 {{ end }}
 
+{{ $socialfb := .Scratch.Get "socialimage" }}
 
 <!-- Schema stuff -->
 <script type="application/ld+json">
@@ -100,7 +101,11 @@
         "@context": "http://schema.org/",
         "@type": "WebSite",
         "name": "{{ default .Site.Title .Title }}",
-        "image": "{{ .Site.BaseURL}}{{ default .Site.Params.socialimage .Params.social.socialimage }}",
+        {{ with $socialfb -}}
+        "image": "{{ $socialfb }}",
+        {{ else -}}
+        "image": "{{ .Site.BaseURL}}{{ .Site.Params.socialimage }}",
+        {{ end -}}
     {{ if .Description -}}
         "about": "{{ .Description }}"
     {{ else -}}

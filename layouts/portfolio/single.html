@@ -1,3 +1,24 @@
+{{ define "schema" }}
+{{ $socialfb := .Scratch.Get "socialimage" }}
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org/",
+        "@type": "WebSite",
+        "name": "{{ default .Site.Title .Title }}",
+        {{ with $socialfb -}}
+        "image": "{{ $socialfb }}",
+        {{ else -}}
+        "image": "{{ .Site.BaseURL}}{{ .Site.Params.socialimage }}",
+        {{ end -}}
+    {{ if .Description -}}
+        "about": "{{ .Description }}"
+    {{ else -}}
+        "about": "{{ .Site.Params.description }}"
+    {{ end -}}
+    }
+</script>
+{{ end }}
+
 {{- define "main" }}
 <article class="div-content">
 

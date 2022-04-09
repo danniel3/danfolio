@@ -1,42 +1,31 @@
-{{/* <!-- Styles and Fonts --> */}}
-{{/* <!-- {{/1* Scan all themes assets css folders for css and add them here *1/}} --> */}}
-{{/* <!-- {{ $cssResources := slice }} --> */}}
-{{/* <!-- {{ $dir := readDir "themes/danfolio/assets/css" }} --> */}}
-{{/* <!-- {{ range $dir }} --> */}}
-{{/* <!--   {{ $path := print "css/" .Name }} --> */}}
-{{/* <!--   {{ $resource := resources.Get $path }} --> */}}
-{{/* <!--   {{ $cssResources = $cssResources | append $resource }} --> */}}
-{{/* <!-- {{ end }} --> */}}
-{{/* <!-- {{ $cssBundle := $cssResources | resources.Concat "css/bundle.css" | fingerprint | minify }} --> */}}
-{{/* <!-- <link rel="stylesheet" href="{{ $cssBundle.RelPermalink }}"> --> */}}
-
-{{/* <!-- Above is for regular css in the assets/css folder, below is for scss in the sass folder --> */}}
-
 <!-- SEO stuff -->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="canonical" href="{{ .Permalink }}">
-<meta name="canonical" content="{{ .Permalink }}">
-{{ with .OutputFormats.Get "RSS" }}<link href="{{ .RelPermalink }}" rel="alternate" type="application/rss+xml">{{ end }}
+    <link rel="canonical" href="{{ .Permalink }}">
+    <meta name="canonical" content="{{ .Permalink }}">
+    {{- with .OutputFormats.Get "RSS" }}<link href="{{ .RelPermalink }}" rel="alternate" type="application/rss+xml">{{ end }}
 
-{{ if ne hugo.Environment "production" }}<meta name="robots" content="noindex,nofollow">{{ else }}<meta name="robots" content="index,follow">{{ end }}
+    {{ if ne hugo.Environment "production" }}<meta name="robots" content="noindex,nofollow">{{ else }}<meta name="robots" content="index,follow">{{ end }}
+
+    {{ with .Site.Params.favicon }}
+    <link rel="icon" type="image/svg+xml" href="{{ . }}" id="favicon-svg">
+    {{ end }}
 
 {{ if .IsHome }}
+    <title>{{ default .Site.Title .Title }}</title>
+    <meta property="og:title" content="{{ default .Site.Title .Title }}">
+    <meta name="twitter:title" content="{{ default .Site.Title .Title }}">
 
-  <title>{{ default .Site.Title .Title }}</title>
-  <meta property="og:title" content="{{ default .Site.Title .Title }}">
-  <meta name="twitter:title" content="{{ default .Site.Title .Title }}">
+    <meta property="og:url" content="{{ .Site.BaseURL }}">
+    <meta name="twitter:url" content="{{ .Site.BaseURL }}">
 
-  <meta property="og:url" content="{{ .Site.BaseURL }}">
-  <meta name="twitter:url" content="{{ .Site.BaseURL }}">
+    <meta name="description" content="{{ default .Site.Params.description .Description }}">
+    <meta name="og:description" content="{{ .Site.Params.description }}">
+    <meta name="twitter:description" content="{{ .Site.Params.description }}">
 
-  <meta name="description" content="{{ default .Site.Params.description .Description }}">
-  <meta name="og:description" content="{{ .Site.Params.description }}">
-  <meta name="twitter:description" content="{{ .Site.Params.description }}">
-
-  <meta name="twitter:image" content="{{ .Site.BaseURL}}{{ .Site.Params.socialimage }}">
-  <meta property="og:image" content="{{ .Site.BaseURL}}{{ .Site.Params.socialimage }}">
+    <meta name="twitter:image" content="{{ .Site.BaseURL}}{{ .Site.Params.socialimage }}">
+    <meta property="og:image" content="{{ .Site.BaseURL}}{{ .Site.Params.socialimage }}">
 
 {{ else }}
 
@@ -93,29 +82,14 @@
     <meta name="twitter:site" content="{{ .Site.Params.twitteruser }}">
 {{ end }}
 
-{{ $socialfb := .Scratch.Get "socialimage" }}
 
-<!-- Schema stuff -->
-<script type="application/ld+json">
-    {
-        "@context": "http://schema.org/",
-        "@type": "WebSite",
-        "name": "{{ default .Site.Title .Title }}",
-        {{ with $socialfb -}}
-        "image": "{{ $socialfb }}",
-        {{ else -}}
-        "image": "{{ .Site.BaseURL}}{{ .Site.Params.socialimage }}",
-        {{ end -}}
-    {{ if .Description -}}
-        "about": "{{ .Description }}"
-    {{ else -}}
-        "about": "{{ .Site.Params.description }}"
-    {{ end -}}
-    }
-</script>
+<!-- Other stuff -->
+<meta itemprop="wordCount" content="{{ .WordCount }}">
 
+<!-- Add Google Analytics -->
 
 <!-- CSS/SaSS stuff -->
+<!-- Consider adding the fonts directly here, so it doesn't call them from elsewhere -->
 {{ $options := (dict "targetPath" "style.css" "outputStyle" "compressed" "enableSourceMap" true ) }}
 {{ $sass := resources.Get "sass/main.scss" }}
 {{ $style := $sass | resources.ToCSS $options }}

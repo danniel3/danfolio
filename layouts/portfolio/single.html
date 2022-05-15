@@ -138,46 +138,7 @@
 	</section>
 
 	<!-- Images -->
-	<section class="gallery narrow">
-		{{- $images := .Page.Resources.ByType "image" -}}
-		{{ $headername := printf "%s%s" ( lower .Title ) ".png" }}
-    	{{ range where $images "Name" "not in" $headername }}
-		{{ $tiny := (.Resize "300x webp") }}
-		{{ $small := (.Resize "400x webp") }}
-		{{ $medium := (.Resize "600x webp") }}
-		{{ $large := (.Resize "800x webp") }}
-		{{ $xlarge := (.Resize "1000x webp") }}
-
-		<div class="responsive">
-			<div class="gallery-image">
-				<a href="{{ .Permalink | absURL }}">
-					<img src="{{ $tiny.Permalink | absURL }}"
-
-						 srcset="{{ $tiny.Permalink | absURL }} 300w,
-								 {{ $small.Permalink | absURL }} 400w,
-								 {{ $medium.Permalink | absURL }} 600w,
-								 {{ $large.Permalink | absURL }} 800w,
-								 {{ $xlarge.Permalink | absURL }} 1000w"
-
-						 sizes="(min-width: 640px) 40vw,
-								(min-width: 768px) 40vw,
-								(min-width: 1024px) 40vw,
-								(min-width: 1366px) 40vw,
-								(min-width: 1600px) 40vw,
-								(min-width: 1920px) 1000px"
-
-						 alt="Image of {{ $.Params.Title }} | Copywriting by Danniel Roumian Booker" class="single">
-				</a>
-
-				<!-- Standard display sizes: 1920, 1600, 1366 (common), 1024, 768, 640 -->
-				<!-- As this box will never be more than 1000px (100 rem x 10px), the largest needed is 1000 -->
-
-			</div>
-		</div>
-		{{ end }}
-	</section>
-	<!-- <div class="clearfix"></div> -->
-
+	{{ partial "gallery.html" . }}
 
 	<!-- Services -->
 	<section class="narrow">

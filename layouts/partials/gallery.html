@@ -1,24 +1,42 @@
 <section class="gallery narrow">
+  <!-- <div class="container"> -->
   {{- $images := .Page.Resources.ByType "image" -}}
   {{ $headername := printf "%s%s" ( lower .Title ) ".png" }}
-  {{ range where $images "Name" "not in" $headername }}
 
-  {{ $thumb := (.Fill "200x200 webp") }}
+  <div class="top">
+
+    <!-- <ul> -->
+
+      {{ range where $images "Name" "not in" $headername }}
+
+      {{ $thumb := (.Fill "200x200 webp") }}
 
 
-  <div class="responsive">
-    <div class="gallery-image">
+      <div class="responsive">
+        <!-- <li class="responsive"> -->
+          <!-- <a href="{{ .Permalink | absURL }}"> -->
+            <a href="#{{$thumb}}">
+              <img src="{{ $thumb.Permalink | absURL }}"
 
-      <a href="{{ .Permalink | absURL }}">
-        <img src="{{ $thumb.Permalink | absURL }}"
+                   alt="Image of {{ $.Params.Title }} | Copywriting by Danniel Roumian Booker" class="single">
+            </a>
+        <!-- </li> -->
 
-            alt="Image of {{ $.Params.Title }} | Copywriting by Danniel Roumian Booker" class="single">
-      </a>
+        <!-- Standard display sizes: 1920, 1600, 1366 (common), 1024, 768, 640 -->
+        <!-- As this box will never be more than 1000px (100 rem x 10px), the largest needed is 1000 -->
 
-      <!-- Standard display sizes: 1920, 1600, 1366 (common), 1024, 768, 640 -->
-      <!-- As this box will never be more than 1000px (100 rem x 10px), the largest needed is 1000 -->
+      </div>
+      {{ end }}
+    <!-- </ul> -->
 
-    </div>
+      {{ range where $images "Name" "not in" $headername }}
+
+      {{ $thumb := (.Fill "200x200 webp") }}
+
+    <a href="#_1" class="lightbox trans" id="{{$thumb}}"><img src="{{ $thumb.Permalink | absURL }}"></a>
+
+    {{ end }}
+
   </div>
-  {{ end }}
+  <!-- </div> -->
 </section>

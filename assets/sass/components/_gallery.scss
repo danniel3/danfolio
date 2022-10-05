@@ -6,6 +6,13 @@ div {
       padding: 0 6px;
       float: left;
       width: 33.333332%;
+
+      a {
+	      box-shadow: none;
+	      &:hover {
+		background-color: transparent !important;
+	}
+      }
     }
 
     // Need to fix these to match my mq mixins

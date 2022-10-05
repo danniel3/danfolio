@@ -88,7 +88,8 @@ p {
 
 a {
 	color: $color-4;
-	text-decoration: underline $color-3;
+	text-decoration: none; // underline $color-3;
+    	box-shadow: inset 0 -4px 0 $color-3;
 
 	&:hover {
 		color: $color-2 !important;

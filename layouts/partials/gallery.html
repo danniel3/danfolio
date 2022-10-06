@@ -11,7 +11,6 @@
 
       {{ $thumb := (.Fill "200x200 webp") }}
 
-
       <div class="responsive">
         <!-- <li class="responsive"> -->
           <!-- <a href="{{ .Permalink | absURL }}"> -->
@@ -32,8 +31,9 @@
       {{ range where $images "Name" "not in" $headername }}
 
       {{ $thumb := (.Fill "200x200 webp") }}
+	{{ $big := (.Resize "800x webp") }}
 
-    <a href="#_1" class="lightbox trans" id="{{$thumb}}"><img src="{{ $thumb.Permalink | absURL }}"></a>
+    <a href="#_1" class="lightbox trans" id="{{$thumb}}"><img src="{{ $big.Permalink | absURL }}"></a>
 
     {{ end }}
 

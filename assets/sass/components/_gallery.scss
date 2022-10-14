@@ -4,55 +4,28 @@ div {
 
     .responsive {
       padding: 0 6px;
+	width: 49.99999%;
+	margin: 6px 0;
       float: left;
-      width: 33.333332%;
 
       a {
-	      box-shadow: none;
-	      &:hover {
-		background-color: transparent !important;
+	      	box-shadow: none;
+	      	&:hover {
+			background-color: transparent !important;
+		}
+		img {
+    			aspect-ratio: 200 / 200;
+      			border: 1px solid #ccc;
+      		}
+      }
+
+	@include mq(xsmall) {
+		width: 33.333332%;
 	}
-      }
     }
 
-    // Need to fix these to match my mq mixins
-    @media only screen and (max-width: 700px) {
-      .responsive {
-        width: 49.99999%;
-        margin: 6px 0;
-      }
-    }
-
-    @media only screen and (max-width: 500px) {
-      .responsive {
-        width: 100%;
-      }
-    }
-
-    &-image {
-      border: 1px solid #ccc;
-
-      &:hover {
-        border: 1px solid #777;
-      }
-
-      img {
-        width: 100%;
-        height: auto;
-      }
-    }
-  // }
-
-//   .desc {
-//     padding: 15px;
-//     text-align: center;
   }
 }
-
-// .container {
-//   width: 100%;
-//   height: 100%;
-// }
 
 .trans
 {
@@ -165,20 +138,4 @@ div {
 	// -ms-transform: translateY(-50%);
 	// -o-transform: translateY(-50%);
 	// -webkit-transform: translateY(-50%);
-}
-
-// .top ul
-// {
-// 	list-style: none;
-// }
-.top ul li
-{
-}
-
-.top ul li::before
-{
-}
-.top ul li
-.top ul li img
-{
 }

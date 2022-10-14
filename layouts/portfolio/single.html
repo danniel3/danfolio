@@ -42,8 +42,8 @@
 		{{- $original := .Resources.GetMatch $img -}}
 		{{ with .Resources.GetMatch $img }}
         	<div class="header image">
-				{{ $tiny := (.Fill "480x140 webp center") }}
-				{{ $medium := (.Fill "700x200 webp center") }}
+				{{ $tiny := (.Fill "480x144 webp center") }}
+				{{ $medium := (.Fill "700x210 webp center") }}
 				{{ $large := (.Fill "1000x300 webp center") }}
 
 				<img src="{{ $tiny.Permalink | absURL }}"

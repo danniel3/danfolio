@@ -9,6 +9,7 @@ $dispfont: 'kavoon';
 /* mohave-regular - latin */
 @font-face {
   font-family: 'mohave';
+  font-display: swap;
   font-style: normal;
   font-weight: 200;
   src: url('../fonts/mohave-v2-latin-regular.eot'); /* IE9 Compat Modes */
@@ -23,6 +24,7 @@ $dispfont: 'kavoon';
 /* amiko-regular - latin */
 @font-face {
   font-family: 'amiko';
+  font-display: swap;
   font-style: normal;
   font-weight: 400;
   src: url('../fonts/amiko-v5-latin-regular.eot'); /* IE9 Compat Modes */
@@ -37,6 +39,7 @@ $dispfont: 'kavoon';
 /* inconsolata-regular - latin */
 @font-face {
   font-family: 'inconsolata';
+  font-display: swap;
   font-style: normal;
   font-weight: 400;
   src: url('../fonts/inconsolata-v21-latin-regular.eot'); /* IE9 Compat Modes */
@@ -52,6 +55,7 @@ $dispfont: 'kavoon';
 /* fruktur-regular - latin */
 @font-face {
   font-family: 'fruktur';
+  font-display: swap;
   font-style: normal;
   font-weight: 400;
   src: url('../fonts/fruktur-v15-latin-regular.eot'); /* IE9 Compat Modes */
@@ -66,6 +70,7 @@ $dispfont: 'kavoon';
 /* kavoon-regular - latin */
 @font-face {
   font-family: 'kavoon';
+  font-display: swap;
   font-style: normal;
   font-weight: 400;
   src: url('../fonts/kavoon-v11-latin-regular.eot'); /* IE9 Compat Modes */

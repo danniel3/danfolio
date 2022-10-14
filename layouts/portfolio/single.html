@@ -44,16 +44,16 @@
         	<div class="header image">
 				{{ $tiny := (.Fill "480x144 webp center") }}
 				{{ $medium := (.Fill "700x210 webp center") }}
-				{{ $large := (.Fill "1000x300 webp center") }}
+				{{ $large := (.Fill "1020x306 webp center") }}
 
 				<img src="{{ $tiny.Permalink | absURL }}"
 
 					srcset="{{ $tiny.Permalink | absURL }} 480w,
 						{{ $medium.Permalink | absURL }} 700w,
-						{{ $large.Permalink | absURL }} 1000w"
+						{{ $large.Permalink | absURL }} 1020w"
 
-					sizes="(min-width: 1000px) 1000px,
-					       (min-width: 768px) 700px,
+					sizes="(min-width: 700px) 1020px,
+					       (min-width: 480px) 700px,
 					       480px"
 
 					alt="Image about {{ $.Params.Title }} Copywriting by Danniel Roumian Booker">

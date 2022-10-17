@@ -3,25 +3,66 @@
   <div class="intro">
     {{ .Content }}
   </div>
+  <div class="filter-box">
+	  <ol class="filters">
+		  <li>
+			  <input type="radio" id="all" name="industries" value="all" class="radio" checked>
+			  <label for="all">All</label>
+		  </li>
+	  	{{ range $industry, $industries := where .Site.Taxonomies.industries "Section" "portfolio" }}
+	  	<li>
+	  		<input type="radio" id="{{ $industry }}" name="industries" value="{{ $industry }}">
+	  		<label for="{{ $industry }}">{{ replace ( title $industry ) "-" " " }}</label>
+	  	</li>
+	  	{{ end }}
+	  </ol>
+
+	  <ol class="filters">
+		  <li>
+			  <input type="radio" id="all" name="services" value="all" checked>
+			  <label for="all">All</label>
+		  </li>
+	  	{{ range $service, $services := where .Site.Taxonomies.services "Section" "portfolio" }}
+	  	<li>
+	  		<input type="radio" id="{{ $service }}" name="services" value="{{ $service }}">
+	  		<label for="{{ $service }}">{{ replace ( title $service ) "-" " " }}</label>
+	  	</li>
+	  	{{ end }}
+	  </ol>
+
+
+	  {{/* {{- range where .Site.Taxonomies "Section" "portfolio" }} */}}
+	  {{/* {{ $pages := where .Site.Pages "Section" "portfolio" }} */}}
+	  {{/* {{ $tax := where .Site.Pages ".Taxonomies.media" "intersect" "kickstarter" }} */}}
+	  {{/* {{ range $taxonomylist, $taxonomy := .Site.Taxonomies }} */}}
+	  {{/* {{ $taxonomylist }} */}}
+	  {{/* {{ end }} */}}
+	  {{/* {{ $tax }} */}}
+	  {{/* {{ $pages }} */}}
+	  {{/* {{ range .Site.Taxonomies.industries }} */}}
+	  {{/* {{ range .Pages }} */}}
+	  {{/* {{ end }} */}}
+	  {{/* {{ end }} */}}
+	  {{/* {{ range $industries }} */}}
+	  {{/* {{ .Page }} */}}
+	  {{/* {{ end }} */}}
+  </div>
+
   <div class="grid">
     {{- range where .Site.RegularPages "Section" "portfolio" }}
-      <div class="grid-item">
-        <div class="image">
-          {{- $img := ( printf "%s.png" ( lower .Title ) ) -}}
-          {{- $images := .Page.Resources.ByType "image" -}}
-          {{- $original := .Resources.GetMatch $img -}}
-          {{- $tinyw := default "500x" -}}
-          {{- .Scratch.Set "tiny" ($original.Fill "200x200 webp") -}}
-          {{- $tiny := .Scratch.Get "tiny" }}
+          {{- $img := .Resources.GetMatch ( printf "%s.png" ( lower .Title ) ) -}}
+          {{- $tiny := ($img.Fill "200x200 webp") }}
+      <div class="item">
+	  <a href="{{ .Permalink }}">
           <img src="{{ $tiny.Permalink | absURL }}">
-        </div>
         <div class="summary">
-          <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-          {{ with .Params.campaigndate.launch }}<p class="date">Launch: {{ dateFormat "Jan 2006" . }}</p>{{end}}
-          {{ with .Params.conversions.raised }}<p class="raise">Raised: ${{ lang.NumFmt 0 . }}</p>{{ end }}
-          {{ with .Params.client.industries }}<p class="industry">Industr{{ if gt ( len . ) 1 }}ies{{ else }}y{{ end }}: {{ range $index, $industry := . }}{{ if gt $index 0 }}, {{ end }}<a href="{{ "/industries/" | relURL }}{{ . | urlize }}">{{ . }}</a>{{ end }}</p>{{ end }}
-          {{ with .Params.highlights.services }}<p class="service">Service{{ if gt ( len . ) 1 }}s{{ end }}: {{ range $index, $service := . }}{{ if gt $index 0 }}, {{ end }}<a href="{{ "/service/" | relURL }}{{ . | urlize }}">{{ . }}</a>{{ end }}</p>{{ end }}
+          <h2>{{ .Title }}</h2>
+          {{ with .Params.campaigndate.launch }}<p class="date">{{ dateFormat "Jan 2006" . }}</p>{{end}}
+          {{ with .Params.results.generated }}<p class="raise">${{ lang.NumFmt 0 . }}</p>{{ end }}
+	  {{ with .Params.client.industries }}<p class="industry">{{ range $index, $industry := . }}{{ if gt $index 0 }}, {{ end }}{{ . }}{{ end }}</p>{{ end }}
+	  {{ with .Params.highlights.services }}<p class="service">{{ range $index, $service := . }}{{ if gt $index 0 }}, {{ end }}{{ . }}{{ end }}</p>{{ end }}
         </div>
+      </a>
       </div>
     {{- end }}
   </div>

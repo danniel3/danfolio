@@ -1,8 +1,8 @@
 <section class="gallery narrow">
   <!-- <div class="container"> -->
   {{- $images := .Page.Resources.ByType "image" -}}
-  {{ $headername := printf "%s%s" ( lower .Title ) ".png" }}
-  {{ $socialname := printf "%s%s" ( lower .Title ) "-social.png" }}
+  {{ $headername := printf "%s.png" ( lower .Title ) }}
+  {{ $socialname := printf "%s-social.png" ( lower .Title ) }}
   {{ $nongallery := slice $headername $socialname }}
 
   <div class="top">
@@ -16,7 +16,7 @@
 	{{ $medium := (.Fit "630x335 webp") }}
 	{{ $large := (.Fit "918x490 webp") }}
 	{{ $xlarge := (.Fit "1728x920 webp") }}
-
+	<div class="single">
       <div class="responsive">
         <!-- <li class="responsive"> -->
           <!-- <a href="{{ .Permalink | absURL }}"> -->
@@ -48,6 +48,7 @@
 
 		alt="Image about {{ $.Params.Title }} | Copywriting by Danniel Roumian Booker">
     </a>
+	</div>
 
     {{ end }}
 

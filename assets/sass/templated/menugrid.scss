@@ -1,0 +1,42 @@
+{{/* Industries Section */}}
+{{/* Top part sorts out the filter selection styling, second part shows all items when "All" is selected, last part doesn't show others when one is selected. */}}
+
+{{- range $industry, $industries := where .Site.Taxonomies.industries "Section" "portfolio" -}}
+[value="{{ $industry }}"]:checked ~ .filters [for="{{ $industry }}"],
+{{- end -}}
+[value="all-industries"]:checked ~ .filters [for="all-industries"] {
+  background: #C86565;
+  color: #FFFCFC;
+}
+
+[value="all-industries"]:checked ~ .grid [industries] {
+	display: block;
+}
+
+{{ range $industry, $industries := where .Site.Taxonomies.industries "Section" "portfolio" -}}
+[value="{{ $industry }}"]:checked ~ .grid .item:not([industries~="{{ $industry }}" I]),
+{{- end -}}
+[value="asdfij10983jdk"]:checked ~ .grid .item:not([industries~="asdlkfjsadf8019238"]) {
+	display: none;
+}
+
+{{/* Services Section */}}
+
+{{- range $service, $services := where .Site.Taxonomies.services "Section" "portfolio" -}}
+[value="{{ $service }}"]:checked ~ .filters [for="{{ $service }}"],
+{{- end -}}
+[value="all-services"]:checked ~ .filters [for="all-services"] {
+  background: #C86565;
+  color: #FFFCFC;
+}
+
+[value="all-services"]:checked ~ .grid [services] {
+	display: block;
+}
+
+{{ range $service, $services := where .Site.Taxonomies.services "Section" "portfolio" -}}
+[value="{{ $service }}"]:checked ~ .grid .item:not([services~="{{ $service }}" I]),
+{{- end -}}
+[value="asdfij10983jdk"]:checked ~ .grid .item:not([services~="asdlkfjsadf8019238"]) {
+	display: none;
+}

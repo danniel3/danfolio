@@ -43,11 +43,6 @@ input[type="radio"] {
   left: -9999px;
 }
 
-
-/* Unneeded things?
-
-
-
 /* FILTERS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .filters {
@@ -78,51 +73,46 @@ input[type="radio"] {
   }
 }
 
-input[type="radio"]:checked ~ label {
-	background: $color-2;
-	color: $color-bg;
-}
-
-
 /* FILTERED ELEMENTS (POSTS)
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-.posts {
+	/*
+.grid {
   display: grid;
   grid-gap: 1.5rem;
   grid-template-columns: repeat(4, 1fr);
 }
 
-.posts .post {
+.grid .item {
   background: #fafafa;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.posts .post-title {
+.grid .item-title {
   font-size: 1.3rem;
 }
 
-.posts .post-title:hover {
+.grid .item-title:hover {
   text-decoration: underline;
 }
 
-.posts figcaption {
+.grid figcaption {
   padding: 1rem;
 }
 
-.posts .post-categories {
+.grid .item-categories {
   margin-bottom: 0.75rem;
   font-size: 0.75rem;
 }
 
-.posts .post-categories * {
+.grid .item-categories * {
   display: inline-block;
 }
 
-.posts .post-categories li {
+.grid .item-categories li {
   margin-bottom: 0.2rem;
 }
 
-.posts .post-categories a {
+.grid .item-categories a {
   padding: 0.2rem 0.5rem;
   border-radius: 1rem;
   border: 1px solid;
@@ -130,42 +120,16 @@ input[type="radio"]:checked ~ label {
   transition: all 0.1s;
 }
 
-.posts .post-categories a:hover {
+.grid .item-categories a:hover {
   background: var(--green);
   color: var(--white);
 }
-
-/* FILTERING RULES
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-[value="All"]:checked ~ .filters [for="All"],
-[value="CSS"]:checked ~ .filters [for="CSS"],
-[value="JavaScript"]:checked ~ .filters [for="JavaScript"],
-[value="jQuery"]:checked ~ .filters [for="jQuery"],
-[value="WordPress"]:checked ~ .filters [for="WordPress"],
-[value="Slider"]:checked ~ .filters [for="Slider"],
-[value="fullPage.js"]:checked ~ .filters [for="fullPage.js"] {
-  background: var(--green);
-  color: var(--white);
-}
-
-[value="All"]:checked ~ .posts [data-category] {
-  display: block;
-}
-
-[value="CSS"]:checked ~ .posts .post:not([data-category~="CSS"]),
-[value="JavaScript"]:checked ~ .posts .post:not([data-category~="JavaScript"]),
-[value="jQuery"]:checked ~ .posts .post:not([data-category~="jQuery"]),
-[value="WordPress"]:checked ~ .posts .post:not([data-category~="WordPress"]),
-[value="Slider"]:checked ~ .posts .post:not([data-category~="Slider"]),
-[value="fullPage.js"]:checked ~ .posts .post:not([data-category~="fullPage.js"]) {
-  display: none;
-}
-
 
 /* MQ
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+	/*
 @media screen and (max-width: 900px) {
-  .posts {
+  .grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
@@ -175,7 +139,8 @@ input[type="radio"]:checked ~ label {
     font-size: 14px;
   }
 
-  .posts {
+  .grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+*/

@@ -27,14 +27,18 @@
 
 		<div class="tags">
 			<!-- Industry and Platform -->
-			{{ with .Params.client.industries }}
+			{{ with .Params.industries }}
 				<p class="tags"><strong>industr{{ if gt (len .) 1 }}ies{{ else }}y{{ end }}:</strong>
 				{{ range $index, $industry := . }}{{ if gt $index 0 }}, {{ end }}<a href="{{ "/industries/" | relURL }}{{ . | urlize }}">{{ . | lower }}</a>{{ end }}</p>
 			{{ end }}
-			{{ with .Params.client.media }}
-				<p class="tags"><strong>medi{{ if gt (len .) 1 }}a{{ else }}um{{ end }}:</strong>
-				{{ range $index, $media := . }}{{ if gt $index 0 }}, {{ end }}<a href="{{ "/medium/" | relURL }}{{ . | urlize }}">{{ . | lower }}</a>{{ end }}</p>
+			{{ with .Params.services }}
+				<p class="tags"><strong>service{{ if gt (len .) 1 }}s{{ end }}:</strong>
+				{{ range $index, $services := . }}{{ if gt $index 0 }}, {{ end }}<a href="{{ "/services/" | relURL }}{{ . | urlize }}">{{ . | lower }}</a>{{ end }}</p>
 			{{ end }}
+			{{/* {{ with .Params.media }} */}}
+			{{/* 	<p class="tags"><strong>medi{{ if gt (len .) 1 }}a{{ else }}um{{ end }}:</strong> */}}
+			{{/* 	{{ range $index, $media := . }}{{ if gt $index 0 }}, {{ end }}<a href="{{ "/medium/" | relURL }}{{ . | urlize }}">{{ . | lower }}</a>{{ end }}</p> */}}
+			{{/* {{ end }} */}}
 		</div>
 
 		<!-- Header Image -->
@@ -101,23 +105,6 @@
 	<section class="narrow">
 		{{ .Content }}
 
-		{{ with .Params.highlights.brief }}
-		<h2>brief</h2>
-		<p>{{ . }}</p>
-		{{ end }}
-
-		<!-- Solutions -->
-		{{ with .Params.highlights.solution }}
-		<h2>solutions</h2>
-		<p>{{ . }}</p>
-		{{ end }}
-
-		<!-- Results -->
-		{{ with .Params.highlights.results }}
-		<h2>results</h2>
-		<p>{{ . }}</p>
-		{{ end }}
-
 		<!-- Media Mentions -->
 		{{ with ( index .Params.featured 0 "media" ) }}
 		<div class="quote-block">
@@ -140,17 +127,17 @@
 	<!-- Images -->
 	{{ partial "gallery.html" . }}
 
-	<!-- Services -->
-	<section class="narrow">
-		{{ with .Params.highlights.services }}
-		<h2>Services</h2>
-		<ul id="tags">
-			{{ range $.Params.highlights.services }}
-			<li><a href="{{ "/services/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> </li>
-			{{ end }}
-		</ul>
-		{{ end }}
-	</section>
+	{{/* <!-- Services --> */}}
+	{{/* <section class="narrow"> */}}
+	{{/* 	{{ with .Params.services }} */}}
+	{{/* 	<h2>Services</h2> */}}
+	{{/* 	<ul id="tags"> */}}
+	{{/* 		{{ range . }} */}}
+	{{/* 		<li><a href="{{ "/services/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> </li> */}}
+	{{/* 		{{ end }} */}}
+	{{/* 	</ul> */}}
+	{{/* 	{{ end }} */}}
+	{{/* </section> */}}
 
 	<!-- Team -->
 	<section class="narrow">
@@ -158,7 +145,7 @@
 		<h2>Team</h2>
 		<ul>
 			{{ with $.Params.team.agency }}
-			<li>Agency: {{ with $.Params.agency.link }}<a href="{{ . }}">{{ end }}{{ . }}</a></li>
+			<li>Agency: {{ with $.Params.team.link }}<a href="{{ . }}">{{ end }}{{ . }}</a></li>
 			{{ end }}
 			{{ with ( index $.Params.team.people 0 "name" ) }}
 			{{ range $.Params.team.people }}

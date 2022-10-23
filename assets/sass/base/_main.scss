@@ -3,8 +3,12 @@ html {
 	color: $color-1;
 
 	body {
-    font-size: 1.6rem;
+    		font-size: 1.6rem;
 		margin: 0;
 		background-color: $color-bg;
+
+		@include mq(med) {
+			width: calc( 100vw - 34px); // Avoids the page centering jumping when scrollbar is/isn't present
+		};
 	}
 }
